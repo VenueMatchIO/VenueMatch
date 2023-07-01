@@ -1,0 +1,9 @@
+
+
+// possible reloading thoughts..
+ 
+hot: true, (in webpack.config) 
+
+ "scripts": {
+    "start": "webpack-dev-server --hot"
+  },

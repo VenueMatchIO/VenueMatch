@@ -1,6 +1,12 @@
+import { useState, useEffect } from 'react';
 import React from 'react';
+import axios from 'axios';
+import Header from './Components/header';
+
+import './App.scss';
+
 const App = () => {
-  return <h1>Hello React</h1>;
+  return <Header />;
 };
 
 export default App;
