@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Header = () => {
-  const [header, setHeader] = useState(null);
+  const [wasClicked, setWasClicked] = useState(false);
+
+  useEffect(() => {}, []);
+
+  const getInfoClicker = () => {
+    setWasClicked(true);
+  };
 
   return (
     <header className='header'>
@@ -9,7 +15,9 @@ const Header = () => {
         <div className='logoParent'></div>
       </h1>
       <div className='pointer'>
-        <button className='bar_button'>SUP</button>
+        <button onClick={getInfoClicker} className='bar_button'>
+          Get Info
+        </button>
       </div>
     </header>
   );
