@@ -11,3 +11,5 @@ hot: true, (in webpack.config)
 Problems:
 
 - Couldn't get hot refresh to work on our frontend portion for soooo long. needed to add --hot on package.json server for development
+
+-Having trouble creating a dropdown menu with an onclick of a button
