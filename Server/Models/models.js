@@ -17,7 +17,7 @@ const playerSchema = new mongoose.Schema({
 
 const gigSchema = new mongoose.Schema({
   venue: { type: String, required: true },
-  date: { type: Date, required: true },
+  // date: { type: Date, required: true },
 });
 
 const instSchema = new mongoose.Schema({

@@ -4,14 +4,17 @@ const Gig = Models.gig;
 const gigController = {
   async createGig(req, res, next) {
     try {
+      console.log('logging from createGig');
+      console.log('req body looks like: ', req.body);
       const newGig = await Gig.create({
         venue: req.body.venue,
-        date: req.body.date,
+        // date: req.body.date
       });
-
+      console.log('newGig: ', newGig);
       res.locals.gig = newGig;
       return next();
     } catch (err) {
+      console.log('logging from error gigController');
       return next({
         log: 'An error occurred wuthin the createGig controller found in gigController.js.',
         status: 400,
