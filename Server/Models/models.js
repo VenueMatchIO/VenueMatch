@@ -1,5 +1,16 @@
 const mongoose = require('mongoose');
 
+async function connectToDb() {
+  try {
+    await mongoose.connect(process.env.DB_URL);
+    console.log('DB connection complete');
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+// { type: mongoose.Types.ObjectId, }
+
 const playerSchema = new mongoose.Schema({
   name: { type: String, required: true },
 });
@@ -14,15 +25,19 @@ const instSchema = new mongoose.Schema({
 });
 
 const playerInstSchema = new mongoose.Schema({
-  player_id: { type: Schema.type.objectId, ref: 'Player' },
-  inst_id: { type: Schema.type.objectId, ref: 'Inst' },
+  player_id: { type: mongoose.Types.ObjectId, ref: 'Player' },
+  inst_id: { type: mongoose.Types.ObjectId, ref: 'Inst' },
 });
 
 const gigInstPlayerSchema = new mongoose.Schema({
-  player_id: { type: Schema.type.objectId, ref: 'Player' },
-  inst_id: { type: Schema.type.objectId, ref: 'Inst' },
-  gig_id: { type: Schema.type.objectId, ref: 'Gig' },
+  player_id: { type: mongoose.Types.ObjectId, ref: 'Player' },
+  inst_id: { type: mongoose.Types.ObjectId, ref: 'Inst' },
+  gig_id: { type: mongoose.Types.ObjectId, ref: 'Gig' },
 });
+
+// app.get('/gig_insts_by_gig/:id')
+// router send this to controller
+//
 
 const Player = mongoose.model('Player', playerSchema);
 const Gig = mongoose.model('Gig', gigSchema);

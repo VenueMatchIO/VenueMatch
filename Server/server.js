@@ -3,26 +3,23 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const cors = require('cors');
-const apiRouter = require('./Routes/routes');
 const PORT = 3000;
+const playerRoutes = require('./Routes/playerRoutes.js');
+const gigRoutes = require('./Routes/playerRoutes.js');
+const instRoutes = require('./Routes/playerRoutes.js');
 
-app.use(bodyParser.json());
 /**
  * handle parsing request body
  */
+app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-// /**
-//  * handle requests for static files
-//  */
-// app.use(express.static(path.resolve(__dirname, '../react-app')));
-
-/**
- * define route handlers
- */
-//app.use('/api', apiRouter);
+// Connect Routes
+// app.use('/players', playerRoutes);
+// app.use('/gigs', gigRoutes);
+// app.use('/inst', instRoutes);
 
 // catch-all route handler for any requests to an unknown route
 // app.use((req, res) => res.status(404).send('This is not the page you\'re looking for...'));
