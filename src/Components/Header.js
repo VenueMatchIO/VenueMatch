@@ -5,20 +5,18 @@ const Header = () => {
   const [wasClicked, setWasClicked] = useState(false);
 
   const getInfoClicker = () => {
-    // setWasClicked(true);
-    console.log('Hello');
+    setWasClicked(true);
   };
   return (
-    <header className='header'>
-      <h1 className='site-name'>
-        <div className='logoParent'></div>
+    <header>
+      <h1>
+        <div></div>
       </h1>
-      <div className='pointer'>
+      <div>
         <button onClick={getInfoClicker} className={'bar_button'}>
           Get Info
-          {wasClicked && <Dropdown />}
         </button>
-        <button onClick={getInfoClicker}>hey</button>
+        {wasClicked && <Dropdown />}
       </div>
     </header>
   );

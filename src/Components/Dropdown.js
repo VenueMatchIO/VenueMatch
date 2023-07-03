@@ -7,6 +7,7 @@ const Dropdown = () => {
   // const [gigsClick, setGigsClick] = useState(false);
   const [clickItem, setClickItem] = useState('');
   useEffect(() => {}, []);
+
   const getSpecificsOnClick = (val) => () => {
     setClickItem(val);
   };
