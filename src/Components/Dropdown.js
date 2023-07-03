@@ -5,9 +5,7 @@ const Dropdown = () => {
   // const [playersClick, setPlayersClick] = useState(false);
   // const [instrumentsClick, setInstrumentsClick] = useState(false);
   // const [gigsClick, setGigsClick] = useState(false);
-
   const [clickItem, setClickItem] = useState('');
-
   useEffect(() => {}, []);
 
   const getSpecificsOnClick = (val) => () => {
@@ -27,5 +25,4 @@ const Dropdown = () => {
     </div>
   );
 };
-
 export default Dropdown;
