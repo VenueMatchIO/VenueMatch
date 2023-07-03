@@ -1,22 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import Players from './Players.js';
 
 const Dropdown = () => {
-  const [playersClick, setPlayersClick] = useState(false);
-  const [instrumentsClick, setInstrumentsClick] = useState(false);
-  const [gigsClick, setGigsClick] = useState(false);
-
+  // const [playersClick, setPlayersClick] = useState(false);
+  // const [instrumentsClick, setInstrumentsClick] = useState(false);
+  // const [gigsClick, setGigsClick] = useState(false);
+  const [clickItem, setClickItem] = useState('');
   useEffect(() => {}, []);
-
   const getSpecificsOnClick = (val) => () => {
-    if (val === 'players') {
-      setPlayersClick(true);
-    } else if (val === 'instruments') {
-      setInstrumentsClick(true);
-    } else {
-      setGigsClick(true);
-    }
-
-    console.log('what up');
+    setClickItem(val);
   };
   return (
     <div>
@@ -28,8 +20,8 @@ const Dropdown = () => {
         <li onClick={getSpecificsOnClick('instruments')}>Instruments</li>
         <li onClick={getSpecificsOnClick('gigs')}>Gigs</li>
       </ul>
+      {clickItem === 'players' && <Players />}
     </div>
   );
 };
-
 export default Dropdown;
