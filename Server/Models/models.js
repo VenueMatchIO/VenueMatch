@@ -12,27 +12,70 @@ async function connectToDb() {
 // { type: mongoose.Types.ObjectId, }
 
 const playerSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  // players table
+  name: {type: String, required: true},
 });
 
+// many to many relationship between player and instruments
+
+// create a join table that is players_instruments
+
+/*
+    player_id | instrument_id
+        5           1
+        5           2
+        6           3
+        7           3
+        8           4
+        9           4
+
+*/
+
+/*
+Tables:
+-Players  -> name, id
+-Instruments -> 
+-Gigs -> venue_id, name
+-Venues
+
+(Gigs only belong to one venue, so no join table necessary)
+Joins:
+-Players to Instruments -> (player_id, instrument_id)
+-Players to Gigs -> (player_id, gig_id)
+
+query:
+
+SELECT p.*, i.*
+FROM players p
+INNER JOIN player_instruments pi ON $1 = pi.player_id // => filters out all other player_id's from this join table
+INNER JOIN instruments i ON i.id = pi.instrument_id
+
+value = [playerId]
+*/
+
+// venue vs gig -> gig is an event... venue is a location
+
 const gigSchema = new mongoose.Schema({
-  venue: { type: String, required: true },
+  // gigs table
+  venue: {type: String, required: true},
   // date: { type: Date, required: true },
 });
 
 const instSchema = new mongoose.Schema({
-  inst_name: { type: String, required: true },
+  // instruments table
+  inst_name: {type: String, required: true},
 });
 
 const playerInstSchema = new mongoose.Schema({
-  player_id: { type: mongoose.Types.ObjectId, ref: 'Player' },
-  inst_id: { type: mongoose.Types.ObjectId, ref: 'Inst' },
+  // players_instruments join table
+  player_id: {type: mongoose.Types.ObjectId, ref: 'Player'},
+  inst_id: {type: mongoose.Types.ObjectId, ref: 'Inst'},
 });
 
 const gigInstPlayerSchema = new mongoose.Schema({
-  player_id: { type: mongoose.Types.ObjectId, ref: 'Player' },
-  inst_id: { type: mongoose.Types.ObjectId, ref: 'Inst' },
-  gig_id: { type: mongoose.Types.ObjectId, ref: 'Gig' },
+  player_id: {type: mongoose.Types.ObjectId, ref: 'Player'},
+  inst_id: {type: mongoose.Types.ObjectId, ref: 'Inst'},
+  gig_id: {type: mongoose.Types.ObjectId, ref: 'Gig'},
 });
 
 // app.get('/gig_insts_by_gig/:id')
