@@ -14,7 +14,7 @@ const gigController = {
       res.locals.gig = newGig;
       return next();
     } catch (err) {
-      console.log('logging from error gigController');
+      console.log('logging error from gigController');
       return next({
         log: 'An error occurred wuthin the createGig controller found in gigController.js.',
         status: 400,
@@ -25,6 +25,8 @@ const gigController = {
 
   async getGig(req, res, next) {
     try {
+      console.log('logging from getGig');
+      console.log('req params looks like: ', req.params);
       const foundGig = await Gig.findOne({
         venue: req.params.venue,
         date: req.params.date,

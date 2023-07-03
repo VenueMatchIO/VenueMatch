@@ -5,8 +5,8 @@ const app = express();
 const cors = require('cors');
 const PORT = 3000;
 const playerRoutes = require('./Routes/playerRoutes.js');
-const gigRoutes = require('./Routes/gigRoutes.js');
-const instRoutes = require('./Routes/instRoutes.js');
+//const gigRoutes = require('./Routes/gigRoutes.js');
+//const instRoutes = require('./Routes/instRoutes.js');
 const connectToDb = require('./Routes/connectToDb.js');
 
 
@@ -20,8 +20,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 // Connect Routes
-// app.use('/players', playerRoutes);
-app.use('/gigs', gigRoutes);
+app.use('/players', playerRoutes);
+//app.use('/gigs', gigRoutes);
 // app.use('/inst', instRoutes);
 
 // catch-all route handler for any requests to an unknown route
