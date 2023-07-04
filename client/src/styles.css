@@ -5,7 +5,7 @@ Styling Variables
 */
 
 :root {
-  --accent: #ece5c7;
+  --accent: #f5f3e8;
   --darkAccent: #cdc2ae;
   --main: #116a7b;
   --mainAlt: #c2dedc;
@@ -21,10 +21,13 @@ body {
   margin: 0;
   background-color: var(--mainAlt);
 }
-
+.app {
+  display: flex;
+}
 .main {
   padding: 4em;
   background-color: var(--mainAlt);
+  margin: 0 auto;
 }
 
 /*
@@ -35,14 +38,22 @@ Navbar Styles
 
 .navbar-container {
   display: flex;
+  flex-direction: column;
   background-color: var(--main);
   height: 5em;
-  justify-content: space-between;
   align-items: center;
-  padding: 0em 3em 0em 3em;
+  padding: 2em 1em 2em 1em;
+  height: 100vh;
+  box-sizing: border-box;
 }
 
-.navbar-title {
+.navbar-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navbar-logo {
   color: var(--accent);
   cursor: pointer;
   user-select: none;
@@ -51,6 +62,15 @@ Navbar Styles
 .navbar-greeting {
   color: var(--accent);
   user-select: none;
+}
+
+.navbar-routes {
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar-routes > button {
+  margin: 1em;
 }
 
 /*
@@ -62,6 +82,8 @@ Main Container Styles
 .main-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /*
