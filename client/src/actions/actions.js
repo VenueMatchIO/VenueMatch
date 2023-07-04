@@ -13,8 +13,8 @@ import * as types from '../constants/actionTypes';
 export const fetchData = () => {
   return async (dispatch) => {
     try {
-      const [instrumentalists, gigs, venues, instruments] = await Promise.all([
-        axios.get('/api/instrumentalists'),
+      const [players, gigs, venues, instruments] = await Promise.all([
+        axios.get('/api/players'),
         axios.get('/api/gigs'),
         axios.get('/api/venues'),
         axios.get('/api/instruments'),
@@ -23,7 +23,7 @@ export const fetchData = () => {
       dispatch({
         type: 'FETCH_DATA',
         payload: {
-          instrumentalists: instrumentalists.data,
+          players: players.data,
           gigs: gigs.data,
           venues: venues.data,
           instruments: instruments.data,
@@ -67,7 +67,7 @@ export const updateInstrument = (id, updatedInstrument) => {
 export const deleteInstrument = (id) => {
   return async (dispatch) => {
     try {
-      const response = await axios.delete('/api/instruments', id);
+      const response = await axios.delete(`/api/instruments/${id}`);
       dispatch({type: types.DELETE_INSTRUMENT, payload: response.data});
     } catch (error) {
       console.error(error);
@@ -116,7 +116,7 @@ export const updatePlayer = (id, updatedPlayer) => {
 export const deletePlayer = (id) => {
   return async (dispatch) => {
     try {
-      const response = await axios.delete('/api/players', id);
+      const response = await axios.delete(`/api/players/${id}`);
       dispatch({type: types.DELETE_PLAYER, payload: response.data});
     } catch (error) {
       console.error(error);
@@ -166,7 +166,7 @@ export const updateGig = (id, updatedGig) => {
 export const deleteGig = (id) => {
   return async (dispatch) => {
     try {
-      const response = await axios.delete('/api/gigs', id);
+      const response = await axios.delete(`/api/gigs/${id}`);
       dispatch({type: types.DELETE_GIG, payload: response.data});
     } catch (error) {
       console.error(error);
@@ -216,7 +216,7 @@ export const updateVenue = (id, updatedVenue) => {
 export const deleteVenue = (id) => {
   return async (dispatch) => {
     try {
-      const response = await axios.delete('/api/venues', id);
+      const response = await axios.delete(`/api/venues/${id}`);
       dispatch({type: types.DELETE_VENUE, payload: response.data});
     } catch (error) {
       console.error(error);
