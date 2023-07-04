@@ -2,7 +2,7 @@ import React from 'react';
 import ControlContainer from './ControlContainer';
 import InformationDisplay from './InformationDisplay';
 import DataContainer from './DataContainer';
-import {players, venues, instruments} from '../../../server/dummyData';
+import {players, venues, instruments, gigs} from '../../../server/dummyData';
 import {Routes} from 'react-router';
 
 function MainContainer() {
@@ -11,12 +11,14 @@ function MainContainer() {
   props['players'] = players;
   props['venues'] = venues;
   props['instruments'] = instruments;
+  props['gigs'] = gigs;
   // ===================================
+
   return (
     <div className='main-container'>
-        <ControlContainer />
-        <InformationDisplay data={props} />
-        <DataContainer data={props} />
+      <ControlContainer />
+      <InformationDisplay data={props} />
+      <DataContainer data={props} />
     </div>
   );
 }

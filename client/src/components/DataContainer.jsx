@@ -1,13 +1,13 @@
 import React from 'react';
+import Data from './Data';
+import {v4 as uuid} from 'uuid';
 
 function DataContainer(props) {
-  return (
-    <div className='data-container'>
-      <button className='data-button'>Venues</button>
-      <button className='data-button'>Players</button>
-      <button className='data-button'>Instruments</button>
-    </div>
-  );
+  // const dataComponents = props.props.data.map((prop) => (
+  //   <Data key={uuid()} title={prop.name} />
+  // ));
+
+  return <div className='data-container'></div>;
 }
 
 export default DataContainer;

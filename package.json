@@ -14,6 +14,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "axios": "^1.4.0",
     "body-parser": "^1.20.2",
     "concurrently": "^8.2.0",
@@ -28,7 +30,8 @@
     "react-router": "^6.14.1",
     "react-router-dom": "^6.14.1",
     "run": "^1.4.0",
-    "serve": "^14.2.0"
+    "serve": "^14.2.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.22.5",
