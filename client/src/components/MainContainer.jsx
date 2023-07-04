@@ -12,6 +12,7 @@ function MainContainer() {
   props['venues'] = venues;
   props['instruments'] = instruments;
   // ===================================
+  
   return (
     <div className='main-container'>
         <ControlContainer />

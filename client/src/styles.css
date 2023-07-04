@@ -141,6 +141,9 @@ Data Container Styles
   border: 2px solid white;
   border-radius: 25px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .data-button:hover {
@@ -148,3 +151,17 @@ Data Container Styles
   color: var(--main);
   border-color: var(--main);
 }
+
+.data-btn-label {
+  margin-left: auto;
+}
+
+.data-btn-icon {
+  margin-left: auto;
+  margin-right: 1em;
+}
+/*
+======================
+Data Container Styles
+======================
+*/

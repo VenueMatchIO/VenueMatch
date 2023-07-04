@@ -1,13 +1,12 @@
 import React from 'react';
+import Data from './Data';
 
-function DataContainer(props) {
-  return (
-    <div className='data-container'>
-      <button className='data-button'>Venues</button>
-      <button className='data-button'>Players</button>
-      <button className='data-button'>Instruments</button>
-    </div>
-  );
+function DataContainer() {
+  const dataArr = ['Venues', 'Players', 'Instruments'];
+  
+  const dataComponents = dataArr.map((title) => <Data title={title} />);
+
+  return <div className='data-container'>{dataComponents}</div>;
 }
 
 export default DataContainer;
