@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Dropdown from './Dropdown';
 
 const Header = () => {
@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <header>
       <h1>
-        <div></div>
+        <div>Test</div>
       </h1>
       <div>
         <button onClick={getInfoClicker} className={'bar_button'}>

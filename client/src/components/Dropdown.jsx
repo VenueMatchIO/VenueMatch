@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import Players from './Players.js';
+import Players from './Players';
 
 const Dropdown = () => {
   // const [playersClick, setPlayersClick] = useState(false);
