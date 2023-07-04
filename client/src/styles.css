@@ -1,0 +1,199 @@
+/*
+=================
+Styling Variables
+=================
+*/
+
+:root {
+  --accent: #ece5c7;
+  --darkAccent: #cdc2ae;
+  --main: #116a7b;
+  --mainAlt: #c2dedc;
+}
+
+/*
+============
+Main Styles
+============
+*/
+
+body {
+  margin: 0;
+  background-color: var(--mainAlt);
+}
+
+.main {
+  padding: 4em;
+  background-color: var(--mainAlt);
+}
+
+/*
+==============
+Navbar Styles
+==============
+*/
+
+.navbar-container {
+  display: flex;
+  background-color: var(--main);
+  height: 5em;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0em 3em 0em 3em;
+}
+
+.navbar-title {
+  color: var(--accent);
+  cursor: pointer;
+  user-select: none;
+}
+
+.navbar-greeting {
+  color: var(--accent);
+  user-select: none;
+}
+
+/*
+=====================
+Main Container Styles
+====================
+*/
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/*
+========================
+Control Container Styles
+========================
+*/
+
+.control-container {
+  display: flex;
+  justify-content: center;
+}
+
+.control-btn-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.control-btn {
+  margin: 2em 5em 1em 5em;
+  padding: 1em;
+  width: 10em;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1.25em;
+  color: white;
+  background-color: var(--main);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  user-select: none;
+}
+
+.control-btn:hover {
+  color: var(--main);
+  background-color: white;
+}
+
+/*
+==========================
+Information Display Styles
+==========================
+*/
+
+.information-display-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  border: 2px solid;
+  border-color: var(--main);
+  border-radius: 25px;
+  padding: 0 25em 1em 25em;
+  margin: 5em 0 5em 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  background: rgb(238, 235, 235);
+}
+
+/*
+======================
+Data Container Styles
+======================
+*/
+
+.data-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.data-button {
+  margin: 2em;
+  height: 3em;
+  font-size: 1.5em;
+  width: 50vw;
+  cursor: pointer;
+  background-color: var(--main);
+  color: white;
+  border: 2px solid white;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.data-button:hover {
+  background-color: white;
+  color: var(--main);
+  border-color: var(--main);
+}
+
+.data-btn-label {
+  margin-left: auto;
+}
+
+.data-btn-icon {
+  margin-left: auto;
+  margin-right: 1em;
+}
+/*
+=============
+Modal Styles
+=============
+*/
+
+.modal-container {
+  position: absolute;
+  z-index: 100;
+  background: white;
+  border: 1px solid var(--main);
+  border-radius: 25px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1em;
+}
+
+.modal-header > button {
+  height: 2em;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-weight: bolder;
+  font-size: 1.5em;
+}
+
+.modal-header > button:hover {
+  color: red;
+}
+
+.modal-inputs {
+  margin: 0.5em;
+}

@@ -1,24 +1,24 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
-const app = express();
-const cors = require('cors');
 const PORT = 3000;
 const playerRoutes = require('./Routes/playerRoutes.js');
-//const gigRoutes = require('./Routes/gigRoutes.js');
-//const instRoutes = require('./Routes/instRoutes.js');
-const connectToDb = require('./Routes/connectToDb.js');
 
-
-connectToDb();
+// connectToDb();
 /**
  * handle parsing request body
  */
+
+const app = express();
+
 app.use(bodyParser.json());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(express.urlencoded({extended: true}));
 
+if (process.env.NODE_ENV === 'production') {
+  // statically serve everything in the build folder on the route '/build'
+  app.use('/', express.static(path.join(__dirname, '../dist')));
+}
 // Connect Routes
 app.use('/players', playerRoutes);
 //app.use('/gigs', gigRoutes);
@@ -27,11 +27,15 @@ app.use('/players', playerRoutes);
 // catch-all route handler for any requests to an unknown route
 // app.use((req, res) => res.status(404).send('This is not the page you\'re looking for...'));
 
+app.use('*', (req, res) => {
+  return res.status(404).send("This is not the page you're looking for...");
+});
+
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
     status: 500,
-    message: { err: 'An error occurred' },
+    message: {err: 'An error occurred'},
   };
   const errorObj = Object.assign({}, defaultErr, err);
   console.log(errorObj.log);
