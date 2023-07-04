@@ -161,7 +161,39 @@ Data Container Styles
   margin-right: 1em;
 }
 /*
-======================
-Data Container Styles
-======================
+=============
+Modal Styles
+=============
 */
+
+.modal-container {
+  position: absolute;
+  z-index: 100;
+  background: white;
+  border: 1px solid var(--main);
+  border-radius: 25px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1em;
+}
+
+.modal-header > button {
+  height: 2em;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-weight: bolder;
+  font-size: 1.5em;
+}
+
+.modal-header > button:hover {
+  color: red;
+}
+
+.modal-inputs {
+  margin: 0.5em;
+}
