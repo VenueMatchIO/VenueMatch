@@ -24,9 +24,6 @@ function ControlContainer() {
   const instrumentData = [];
 
   function handleClick(e) {
-    // set the modal data based on what button was clicked with props that are passed down..
-    // or data that we fetch
-    // set the showModal to true
     const type = e.target.name;
     let data;
     if (type === 'venue') data = venueData;
