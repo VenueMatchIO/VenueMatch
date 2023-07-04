@@ -1,13 +1,8 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
-
-const cors = require('cors');
 const PORT = 3000;
 const playerRoutes = require('./Routes/playerRoutes.js');
-//const gigRoutes = require('./Routes/gigRoutes.js');
-//const instRoutes = require('./Routes/instRoutes.js');
-// const connectToDb = require('./Routes/connectToDb.js');
 
 // connectToDb();
 /**
