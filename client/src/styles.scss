@@ -4,12 +4,15 @@ Styling Variables
 =================
 */
 
-:root {
-  --accent: #ece5c7;
-  --darkAccent: #cdc2ae;
-  --main: #116a7b;
-  --mainAlt: #c2dedc;
-}
+// :root {
+
+// }
+
+$Primary: rgb(7, 89, 171);
+$Secondary: scale-color($Primary, $lightness: 60%);
+$Tertiary: scale-color($Primary, $lightness: 80%);
+$LightFont: scale-color($Primary, $lightness: 95%);
+$DarkFont: scale-color($Primary, $lightness: -50%);
 
 /*
 ============
@@ -19,12 +22,12 @@ Main Styles
 
 body {
   margin: 0;
-  background-color: var(--mainAlt);
+  background-color: $Tertiary;
 }
 
 .main {
   padding: 4em;
-  background-color: var(--mainAlt);
+  background-color: $Tertiary;
 }
 
 /*
@@ -35,7 +38,7 @@ Navbar Styles
 
 .navbar-container {
   display: flex;
-  background-color: var(--main);
+  background-color: $Primary;
   height: 5em;
   justify-content: space-between;
   align-items: center;
@@ -43,13 +46,13 @@ Navbar Styles
 }
 
 .navbar-title {
-  color: var(--accent);
+  color: $Tertiary;
   cursor: pointer;
   user-select: none;
 }
 
 .navbar-greeting {
-  color: var(--accent);
+  color: $Tertiary;
   user-select: none;
 }
 
@@ -88,14 +91,14 @@ Control Container Styles
   border-radius: 25px;
   cursor: pointer;
   font-size: 1.25em;
-  color: white;
-  background-color: var(--main);
+  color: $LightFont;
+  background-color: $Primary;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
   user-select: none;
 }
 
 .control-btn:hover {
-  color: var(--main);
+  color: $Primary;
   background-color: white;
 }
 
@@ -111,7 +114,7 @@ Information Display Styles
   align-items: center;
   align-self: center;
   border: 2px solid;
-  border-color: var(--main);
+  border-color: $Primary;
   border-radius: 25px;
   padding: 0 25em 1em 25em;
   margin: 5em 0 5em 0;
@@ -136,7 +139,7 @@ Data Container Styles
   font-size: 1.5em;
   width: 50vw;
   cursor: pointer;
-  background-color: var(--main);
+  background-color: $Primary;
   color: white;
   border: 2px solid white;
   border-radius: 25px;
@@ -148,8 +151,8 @@ Data Container Styles
 
 .data-button:hover {
   background-color: white;
-  color: var(--main);
-  border-color: var(--main);
+  color: $Primary;
+  border-color: $Primary;
 }
 
 .data-btn-label {
@@ -170,7 +173,7 @@ Modal Styles
   position: absolute;
   z-index: 100;
   background: white;
-  border: 1px solid var(--main);
+  border: 1px solid $Primary;
   border-radius: 25px;
 }
 

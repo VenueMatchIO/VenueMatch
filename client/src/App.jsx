@@ -3,7 +3,7 @@ import Navbar from './components/Navbar.jsx';
 import {Routes, Route} from 'react-router';
 import MainContainer from './components/MainContainer.jsx';
 
-import './styles.css';
+import './styles.scss';
 
 const App = () => {
   return (
