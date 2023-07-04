@@ -13,15 +13,16 @@ import * as types from '../constants/actionTypes';
 export const fetchData = () => {
   return async (dispatch) => {
     try {
+      // get every player, gig, venue and instrument at once
       const [players, gigs, venues, instruments] = await Promise.all([
         axios.get('/api/players'),
         axios.get('/api/gigs'),
         axios.get('/api/venues'),
         axios.get('/api/instruments'),
       ]);
-
+      // update state with what the database returns
       dispatch({
-        type: 'FETCH_DATA',
+        type: types.FETCH_DATA,
         payload: {
           players: players.data,
           gigs: gigs.data,
