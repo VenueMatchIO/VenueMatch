@@ -3,9 +3,9 @@ Action Constants
 */
 
 /*
-================
-Universal Action
-================
+===================
+  Universal Action
+===================
 */
 export const FETCH_DATA = 'FETCH_DATA';
 
