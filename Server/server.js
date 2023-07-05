@@ -21,6 +21,8 @@ app.use(express.urlencoded({extended: true}));
 if (process.env.NODE_ENV === 'production') {
   // statically serve everything in the build folder on the route '/build'
   app.use('/', express.static(path.join(__dirname, '../dist')));
+} else {
+  app.use(express.static(path.join(__dirname, '../client/src')));
 }
 // Connect Routes
 app.use('/api/user', userRouter, (req, res) => {
@@ -39,7 +41,7 @@ app.use('/', (req, res) => {
 // catch-all route handler for any requests to an unknown route
 // app.use((req, res) => res.status(404).send('This is not the page you\'re looking for...'));
 
-app.use('*', (req, res) => {
+app.get((req, res) => {
   return res.status(404).send("This is not the page you're looking for...");
 });
 

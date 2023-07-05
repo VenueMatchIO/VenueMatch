@@ -1,4 +1,4 @@
-const Gig = require('../models/gigModel.js');
+const Gig = require('../Models/gigModel.js');
 
 const gigController = {};
 
@@ -14,8 +14,8 @@ gigController.createGig = async (req, res, next) => {
   console.log('Creating a new gig...');
   const newGig = new Gig(name, venue, date, instruments);
   try {
-    newGig.createGig();
-    res.locals = newGig;
+    const gigID = await newGig.createGig();
+    res.locals = gigID;
     console.log('Created new gig ', newGig);
     return next();
   } catch (error) {
@@ -30,7 +30,7 @@ gigController.createGig = async (req, res, next) => {
 };
 
 gigController.getGig = async (req, res, next) => {
-  const {gig_id: gigId} = req.query;
+  const {id: gigId} = req.params;
   if (!gigId) {
     return next({
       log: 'No gig ID provided',
@@ -41,7 +41,23 @@ gigController.getGig = async (req, res, next) => {
     });
   }
   try {
-    const gigs = await Gig.getGig(gigId);
+    const gigs = await Gig.getGigDetails(gigId);
+    res.locals = gigs;
+    return next();
+  } catch (error) {
+    return next({
+      log: error,
+      status: 400,
+      message: {
+        err: 'Error in the getGig method of gigController',
+      },
+    });
+  }
+};
+
+gigController.getGigs = async (req, res, next) => {
+  try {
+    const gigs = await Gig.joinGigVenue();
     res.locals = gigs;
     return next();
   } catch (error) {

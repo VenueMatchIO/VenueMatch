@@ -11,7 +11,11 @@ router.post('/gig', gigController.createGig, (req, res) => {
   return res.status(201).json(res.locals);
 });
 
-router.get('/gig', gigController.getGig, (req, res) => {
+router.get('/gigs', gigController.getGigs, (req, res) => {
+  return res.status(200).json(res.locals);
+});
+
+router.get('/gig/:id', gigController.getGig, (req, res) => {
   console.log('Hello from gigRoutes get');
   return res.status(200).json(res.locals);
 });
@@ -49,12 +53,12 @@ router.post('/player', playerController.createPlayer, (req, res) => {
   return res.status(201).json(res.locals);
 });
 
-router.get('/', playerController.getAllPlayers, (req, res) => {
+router.get('/', playerController.getPlayers, (req, res) => {
   console.log('Hello from getting all players');
   return res.status(200).json(res.locals);
 });
 
-router.get('/player', playerController.getPlayer, (req, res) => {
+router.get('/player', playerController.getPlayers, (req, res) => {
   console.log('Hello from playerRoutes get');
   return res.status(200).json(res.locals);
 });

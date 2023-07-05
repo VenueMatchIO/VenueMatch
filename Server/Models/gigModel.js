@@ -1,17 +1,5 @@
 const db = require('../database/db');
 
-/*
-
-const {gigName, venueId, date, instruments} = req.body;
-
-const newGig = new Gig(gigName, venueId, date, instruments)
-newGig.createGig()
-
-
-Gig {name: gigName, venueId: venueId, date: date, instruments: [id's]}
-
-*/
-
 class Gig {
   constructor(name, venueId, date, instruments) {
     this.name = name;
@@ -39,7 +27,7 @@ class Gig {
       return error;
     }
 
-    return createGigData;
+    return createGigData[0];
   }
 
   static async getGigs() {
@@ -70,6 +58,26 @@ class Gig {
   async deleteGig() {
     try {
       const response = await db.deleteGig(this.id);
+      return response.rows;
+    } catch (error) {
+      console.error(error);
+      return error;
+    }
+  }
+
+  static async joinGigVenue() {
+    try {
+      const response = await db.getGigVenueJoinData();
+      return response.rows;
+    } catch (error) {
+      console.error(error);
+      return error;
+    }
+  }
+
+  static async getGigDetails(id) {
+    try {
+      const response = await db.getGigPlayerInstrument(id);
       return response.rows;
     } catch (error) {
       console.error(error);

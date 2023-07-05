@@ -29,7 +29,7 @@ playerController.createPlayer = async (req, res, next) => {
   }
 };
 
-playerController.getPlayer = async (req, res, next) => {
+playerController.getPlayers = async (req, res, next) => {
   const {player_id: playerId} = req.query;
   if (!playerId) {
     return next({

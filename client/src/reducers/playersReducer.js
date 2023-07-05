@@ -1,6 +1,6 @@
 import * as types from '../constants/actionTypes';
 
-export function playersReducer(state = [], action) {
+export default function playersReducer(state = [], action) {
   switch (action.type) {
     case types.ADD_PLAYER:
       return [...state, action.payload];

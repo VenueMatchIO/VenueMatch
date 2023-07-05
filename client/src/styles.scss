@@ -19,8 +19,18 @@ body {
   // background: rgb(152,136,249);
   // background: linear-gradient(90deg, rgba(152,136,249,1) 0%, rgba(194,118,120,1) 4%, rgba(204,134,114,1) 8%, rgba(241,189,95,1) 13%, rgba(172,244,197,1) 20%, rgba(204,196,255,1) 30%, rgba(164,223,250,1) 50%, rgba(204,196,255,1) 70%, rgba(182,235,182,1) 80%, rgba(241,189,95,1) 87%, rgba(204,134,114,1) 92%, rgba(194,118,120,1) 96%, rgba(152,136,249,1) 100%);
 
-  background: rgb(152,136,249);
-background: linear-gradient(90deg, rgba(152,136,249,1) 0%, rgba(194,118,120,1) 4%, rgba(204,134,114,1) 8%, rgba(241,189,95,1) 13%, rgba(172,244,197,1) 18%, rgba(204,196,255,1) 30%, rgba(164,223,250,1) 62%, rgba(204,196,255,1) 100%);
+  background: rgb(152, 136, 249);
+  background: linear-gradient(
+    90deg,
+    rgba(152, 136, 249, 1) 0%,
+    rgba(194, 118, 120, 1) 4%,
+    rgba(204, 134, 114, 1) 8%,
+    rgba(241, 189, 95, 1) 13%,
+    rgba(172, 244, 197, 1) 18%,
+    rgba(204, 196, 255, 1) 30%,
+    rgba(164, 223, 250, 1) 62%,
+    rgba(204, 196, 255, 1) 100%
+  );
 }
 
 .app {
@@ -42,11 +52,10 @@ Navbar Styles
   display: flex;
   flex-direction: column;
   background-color: transparentize($Dark, 0.8);
-  height: 5em;
-  width: 17em;
+  height: 100vh;
+  width: $NavbarWidth;
   align-items: center;
   padding: 2em 1em 2em 1em;
-  height: 100vh;
   box-sizing: border-box;
   // border-right: 1px solid $Primary;
 }
@@ -87,6 +96,11 @@ Navbar Styles
   width: 9em;
   height: 3em;
   font-family: Comfortaa;
+}
+
+.navbar-routes > .active {
+  color: $Tertiary;
+  background: transparentize($Primary, 0.2);
 }
 
 .navbar-routes > button:hover {
@@ -155,7 +169,8 @@ Information Display Styles
   flex-direction: column;
   align-items: center;
   align-self: center;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
   color: $SuperDarkFont;
   border: 2px solid;
   border-color: $Primary;
@@ -239,7 +254,7 @@ Modal Styles
   font-family: Comfortaa;
   font-weight: bolder;
   font-size: 1.5em;
-  color: $SuperDarkFont
+  color: $SuperDarkFont;
 }
 
 .modal-header > button:hover {
@@ -254,4 +269,37 @@ Modal Styles
   margin: 0.5em;
   font-family: Comfortaa;
   color: $SuperDarkFont;
+}
+
+/*
+=============
+Gig Styles
+=============
+*/
+
+.gig-btn {
+  width: calc(85vw - $NavbarWidth);
+  margin: 1em;
+  cursor: pointer;
+  border-radius: 25px;
+  background-color: $Tertiary;
+  color: $SuperDarkFont;
+  border-color: $Primary;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+.gig-btn-contents {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.5em 0 0.5em;
+}
+
+.gig-btn-contents > * {
+  font-size: 1.2em;
+}
+
+.gig-btn:hover {
+  color: $Tertiary;
+  background-color: $Primary;
+  border-color: $Tertiary;
 }

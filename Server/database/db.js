@@ -53,10 +53,10 @@ const fetchInstruments = async () => {
 Gig Queries
 =================
 */
-const createGig = async (name, date, venue_id) => {
+const createGig = async (name, date, venueId) => {
   return await db.query(
     'INSERT INTO gigs (name, date, venue_id) VALUES ($1, $2, $3) RETURNING *',
-    [name, date, venue_id]
+    [name, date, venueId]
   );
 };
 
@@ -94,6 +94,26 @@ const insertInstrumentGig = async (instruments, gigId) => {
 
   query.text += placeholders.join(',');
   return await db.query(query);
+};
+
+const getGigVenueJoinData = async () => {
+  const query = `
+        SELECT g.name, g.date, g.id, v.name as venue_name, v.location FROM gigs g
+        INNER JOIN venues v
+        ON v.id = g.venue_id
+    `;
+  return await db.query(query);
+};
+
+const getGigPlayerInstrument = async (gigId) => {
+  const query = `
+    SELECT i.name as instrument, g.name
+    FROM gigs g
+    INNER JOIN instruments_players_gigs ipg ON ipg.gig_id = g.id
+    INNER JOIN instruments i ON i.id = ipg.instrument_id
+    WHERE g.id = $1
+    `;
+  return await db.query(query, [gigId]);
 };
 /*
 =================
@@ -138,4 +158,6 @@ module.exports = {
   deleteVenue,
   fetchVenues,
   insertInstrumentGig,
+  getGigVenueJoinData,
+  getGigPlayerInstrument,
 };

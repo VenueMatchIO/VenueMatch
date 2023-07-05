@@ -1,6 +1,6 @@
 import * as types from '../constants/actionTypes';
 
-export function gigReducer(state = [], action) {
+export default function gigReducer(state = [], action) {
   switch (action.type) {
     case types.ADD_GIG:
       return [...state, action.payload];
