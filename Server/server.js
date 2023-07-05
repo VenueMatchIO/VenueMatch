@@ -1,8 +1,12 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+
+
 const PORT = 3000;
-const playerRoutes = require('./Routes/playerRoutes.js');
+const apiRouter = require('./Routes/api.js')
+const userRouter = require('./Routes/user.js');
 
 // connectToDb();
 /**
@@ -12,6 +16,7 @@ const playerRoutes = require('./Routes/playerRoutes.js');
 const app = express();
 
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
@@ -20,9 +25,18 @@ if (process.env.NODE_ENV === 'production') {
   app.use('/', express.static(path.join(__dirname, '../dist')));
 }
 // Connect Routes
-app.use('/players', playerRoutes);
-//app.use('/gigs', gigRoutes);
-// app.use('/inst', instRoutes);
+app.use('/api/user', userRouter, (req, res) => {
+  return res.sendStatus(200);
+});
+
+app.use('/api', apiRouter, (req, res) => {
+  console.log('api hit');
+  return res.sendStatus(200);
+});
+
+app.use('/', (req, res) => {
+  return res.sendStatus(200);
+});
 
 // catch-all route handler for any requests to an unknown route
 // app.use((req, res) => res.status(404).send('This is not the page you\'re looking for...'));
