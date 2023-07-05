@@ -1,148 +1,57 @@
-const Models = require('../Models/models');
-const Player = Models.player;
+const Player = require('../Models/playerModel.js');
 
-const playerController = {
-  async createPlayer(req, res, next) {
-    try {
-      console.log('logging from createPlayer');
-      console.log('req body looks like: ', req.body);
-      const newPlayer = await Player.create({
-        name: req.body.name,
-        // do we need instruments at some point??
-      });
-      console.log('newPlayer: ', newPlayer);
-      res.locals.player = newPlayer;
-      return next();
-    } catch (err) {
-      console.log('logging error from playerController');
-      return next({
-        log: 'An error occurred wuthin the createPlayer controller found in playerController.js.',
-        status: 400,
-        message: {err: 'An error occurred when trying to create player.'},
-      });
-    }
-  },
+const playerController = {};
 
-  async getAllPlayers(req, res, next) {
-    try {
-      console.log('logging from getAllPlayers');
-      const foundPlayers = await Player.find({});
-      res.locals.players = foundPlayers;
-      return next();
-    } catch {
-      return next({
-        log: 'An error occurred wuthin the getAllPlayers controller found in playerController.js.',
-        status: 400,
-        message: {err: 'An error occurred when trying to find all players.'},
-      });
-    }
-  },
+playerController.createPlayer = async (req, res, next) => {
+  const {name, instruments} = req.body;
+  if (!name || !instruments) {
+    return next({
+      log: 'Missing field for the createPlayer method',
+      status: 400,
+      message: {err: 'Error in the createPlayer method of playerController'},
+    });
+  }
+  console.log('Creating a new player...');
+  const newPlayer = new Player(name, instruments);
+  try {
+    newPlayer.createPlayer();
+    console.log('New player created successfully: ', newPlayer);
+    return next();
+  } catch (error) {
+    return next({
+      log: error,
+      status: 400,
+      message: {
+        err: 'Error in the createPlayer method of playerController',
+      },
+    });
+  }
+};
 
-  async getPlayer(req, res, next) {
-    try {
-      console.log('logging from getPlayer');
-      console.log('req params looks like: ', req.params);
-      const foundPlayer = await Player.findOne({
-        name: req.params.name,
-        // do we need instruments at some point?
-      });
-
-      console.log('foundPlayer: ', foundPlayer);
-
-      res.locals.player = foundPlayer;
-      return next();
-    } catch {
-      return next({
-        log: 'An error occurred wuthin the getPlayer controller found in playerController.js.',
-        status: 400,
-        message: {err: 'An error occurred when trying to find player.'},
-      });
-    }
-  },
-
-  async updatePlayer(req, res, next) {
-    try {
-      console.log('Hello from the updatePlayer method');
-      console.log('req params looks like: ', req.params);
-      console.log('req body looks like this: ', req.body);
-      const updatedPlayer = await Player.findOneAndUpdate(
-        {name: req.params.name},
-        {name: req.body.name},
-        {new: true}
-      );
-
-      console.log('updatedPlayer: ', updatePlayer);
-
-      res.locals.player = updatedPlayer;
-      return next();
-    } catch {
-      return next({
-        log: 'An error occurred within the updatePlayer controller found in PlayerController.js.',
-        status: 400,
-        message: {err: 'An error occurred when trying to update player.'},
-      });
-    }
-  },
-
-  //   async updateVenue(req, res, next) {
-
-  //     try{
-
-  //         const updatedVenue = await Gig.findOneAndUpdate(
-  //             { venue: req.params.venue },
-  //             { venue: req.body.name },
-  //             { new: true }
-  //         )
-
-  //     } catch {
-
-  //         return next({
-  //             log: 'An error occurred wuthin the updateVenue controller found in gigController.js.',
-  //             status: 400,
-  //             message: { err: 'An error occurred when trying to update venue.' }
-  //         });
-
-  //     }
-  //   },
-
-  //   async updateDate(req, res, next) {
-
-  //     try{
-
-  //         const updatedDate = await Gig.findOneAndUpdate(
-  //             { date: req.params.venue },
-  //             { date: req.body.name },
-  //             { new: true }
-  //         )
-
-  //     } catch {
-
-  //         return next({
-  //             log: 'An error occurred wuthin the updateDate controller found in gigController.js.',
-  //             status: 400,
-  //             message: { err: 'An error occurred when trying to update date.' }
-  //         });
-
-  //     }
-  //   },
-
-  async deleteGig(req, res, next) {
-    try {
-      const deletedStudent = Gig.findOneAndDelete(
-        {venue: req.params.venue},
-        {date: req.params.date}
-      );
-
-      res.locals.gig = deletedStudent;
-      next();
-    } catch {
-      return next({
-        log: 'An error occurred within the deleteGig controller found in gigController.js.',
-        status: 400,
-        message: {err: 'An error occurred when trying to delete gig.'},
-      });
-    }
-  },
+playerController.getPlayer = async (req, res, next) => {
+  const {player_id: playerId} = req.query;
+  if (!playerId) {
+    return next({
+      log: 'No player ID provided',
+      status: 400,
+      message: {
+        err: 'Error in getPlayer method of playerController on player ID',
+      },
+    });
+  }
+  try {
+    const players = await Player.getPlayer(playerId);
+    res.locals = players;
+    return next();
+  } catch (error) {
+    return next({
+      log: error,
+      status: 400,
+      message: {
+        err: 'Error in the getPlayer method of playerController',
+      },
+    });
+  }
 };
 
 module.exports = playerController;

@@ -2,6 +2,9 @@ import React from 'react';
 import LogoSVG from './LogoSVG';
 import {useNavigate} from 'react-router';
 
+import variables from '../variables.module.scss';
+const {tertiaryColor} = variables;
+
 function Navbar() {
   const navigate = useNavigate();
 
@@ -11,7 +14,7 @@ function Navbar() {
         <LogoSVG
           width={150}
           height={50}
-          fill='#f5f3e8'
+          fill={tertiaryColor}
           className='navbar-logo'
           onClick={() => navigate('/')}
         />
