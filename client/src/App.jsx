@@ -7,7 +7,7 @@ import GigsPage from './pages/Gigs/GigsPage.jsx';
 import PlayersPage from './pages/Players/PlayersPage.jsx';
 import InstrumentsPage from './pages/Instruments/InstrumentsPage.jsx';
 
-import styles from './styles.scss';
+import './styles.scss';
 
 const App = () => {
   return (
