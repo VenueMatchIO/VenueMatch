@@ -15,6 +15,7 @@ gigController.createGig = async (req, res, next) => {
   const newGig = new Gig(name, venue, date, instruments);
   try {
     newGig.createGig();
+    res.locals = newGig;
     console.log('Created new gig ', newGig);
     return next();
   } catch (error) {
@@ -52,6 +53,14 @@ gigController.getGig = async (req, res, next) => {
       },
     });
   }
+};
+
+gigController.updateGig = async (req, res, next) => {
+  return next();
+};
+
+gigController.deleteGig = async (req, res, next) => {
+  return next();
 };
 
 module.exports = gigController;

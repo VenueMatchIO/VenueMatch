@@ -15,6 +15,7 @@ playerController.createPlayer = async (req, res, next) => {
   const newPlayer = new Player(name, instruments);
   try {
     newPlayer.createPlayer();
+    res.locals = newPlayer;
     console.log('New player created successfully: ', newPlayer);
     return next();
   } catch (error) {
@@ -52,6 +53,14 @@ playerController.getPlayer = async (req, res, next) => {
       },
     });
   }
+};
+
+playerController.updatePlayer = async (req, res, next) => {
+  return next();
+};
+
+playerController.deletePlayer = async (req, res, next) => {
+  return next();
 };
 
 module.exports = playerController;
