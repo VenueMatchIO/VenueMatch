@@ -1,11 +1,10 @@
 import React from 'react';
-import ControlContainer from './ControlContainer';
-import InformationDisplay from './InformationDisplay';
-import DataContainer from './DataContainer';
-import {players, venues, instruments, gigs} from '../../../server/dummyData';
-import {Routes} from 'react-router';
+import {players, venues, instruments, gigs} from '../../../../server/dummyData';
+import ControlContainer from './components/ControlContainer';
+import InformationDisplay from '../Instruments/components/InformationDisplay';
+import DataContainer from './components/DataContainer';
 
-function MainContainer() {
+function DashboardPage() {
   // =========== DUMMY DATA ============
   const props = {};
   props['players'] = players;
@@ -23,4 +22,4 @@ function MainContainer() {
   );
 }
 
-export default MainContainer;
+export default DashboardPage;

@@ -18,23 +18,22 @@ const playerController = {
       return next({
         log: 'An error occurred wuthin the createPlayer controller found in playerController.js.',
         status: 400,
-        message: { err: 'An error occurred when trying to create player.' },
+        message: {err: 'An error occurred when trying to create player.'},
       });
     }
   },
 
-  async getAllPlayers (req, res, next) {
+  async getAllPlayers(req, res, next) {
     try {
       console.log('logging from getAllPlayers');
       const foundPlayers = await Player.find({});
       res.locals.players = foundPlayers;
       return next();
-    }
-    catch {
+    } catch {
       return next({
         log: 'An error occurred wuthin the getAllPlayers controller found in playerController.js.',
         status: 400,
-        message: { err: 'An error occurred when trying to find all players.' },
+        message: {err: 'An error occurred when trying to find all players.'},
       });
     }
   },
@@ -44,7 +43,7 @@ const playerController = {
       console.log('logging from getPlayer');
       console.log('req params looks like: ', req.params);
       const foundPlayer = await Player.findOne({
-        name: req.params.name
+        name: req.params.name,
         // do we need instruments at some point?
       });
 
@@ -56,20 +55,20 @@ const playerController = {
       return next({
         log: 'An error occurred wuthin the getPlayer controller found in playerController.js.',
         status: 400,
-        message: { err: 'An error occurred when trying to find player.' },
+        message: {err: 'An error occurred when trying to find player.'},
       });
     }
   },
 
   async updatePlayer(req, res, next) {
     try {
-      console.log("Hello from the updatePlayer method")
+      console.log('Hello from the updatePlayer method');
       console.log('req params looks like: ', req.params);
       console.log('req body looks like this: ', req.body);
       const updatedPlayer = await Player.findOneAndUpdate(
-        { name: req.params.name },
-        { name: req.body.name },
-        { new: true }
+        {name: req.params.name},
+        {name: req.body.name},
+        {new: true}
       );
 
       console.log('updatedPlayer: ', updatePlayer);
@@ -80,7 +79,7 @@ const playerController = {
       return next({
         log: 'An error occurred within the updatePlayer controller found in PlayerController.js.',
         status: 400,
-        message: { err: 'An error occurred when trying to update player.' },
+        message: {err: 'An error occurred when trying to update player.'},
       });
     }
   },
@@ -130,8 +129,8 @@ const playerController = {
   async deleteGig(req, res, next) {
     try {
       const deletedStudent = Gig.findOneAndDelete(
-        { venue: req.params.venue },
-        { date: req.params.date }
+        {venue: req.params.venue},
+        {date: req.params.date}
       );
 
       res.locals.gig = deletedStudent;
@@ -140,7 +139,7 @@ const playerController = {
       return next({
         log: 'An error occurred within the deleteGig controller found in gigController.js.',
         status: 400,
-        message: { err: 'An error occurred when trying to delete gig.' },
+        message: {err: 'An error occurred when trying to delete gig.'},
       });
     }
   },

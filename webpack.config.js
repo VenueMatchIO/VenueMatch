@@ -37,8 +37,8 @@ module.exports = {
     hot: true,
     headers: {'Access-Control-Allow-Origin': '*'},
     static: {
-      directory: path.resolve(__dirname, 'Dist'),
-      publicPath: '/build',
+      directory: path.resolve(__dirname, 'dist'),
+      publicPath: '/dist',
     },
     proxy: {
       '/api': {
