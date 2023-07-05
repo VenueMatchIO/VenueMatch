@@ -21,12 +21,6 @@ const deletePlayer = (id) => {
 const fetchPlayers = () => {
     return db.query('SELECT * FROM players');
 }
-// createPlayer
-// updatePlayer
-// delete
-// fetchPlayers
-
-
 
 /*
 =================
