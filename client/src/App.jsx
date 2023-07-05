@@ -7,14 +7,14 @@ import './styles.css';
 
 const App = () => {
   return (
-    <>
+    <div className='app'>
       <Navbar />
       <div className='main'>
         <Routes>
           <Route path='/' element={<MainContainer className='main' />} />
         </Routes>
       </div>
-    </>
+    </div>
   );
 };
 
