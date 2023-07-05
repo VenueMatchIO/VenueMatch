@@ -18,7 +18,7 @@ const gigController = {
       return next({
         log: 'An error occurred wuthin the createGig controller found in gigController.js.',
         status: 400,
-        message: { err: 'An error occurred when trying to create gig.' },
+        message: {err: 'An error occurred when trying to create gig.'},
       });
     }
   },
@@ -38,7 +38,7 @@ const gigController = {
       return next({
         log: 'An error occurred wuthin the getGig controller found in gigController.js.',
         status: 400,
-        message: { err: 'An error occurred when trying to find gig.' },
+        message: {err: 'An error occurred when trying to find gig.'},
       });
     }
   },
@@ -46,11 +46,11 @@ const gigController = {
   async updateGig(req, res, next) {
     try {
       const updatedGig = await Gig.findOneAndUpdate(
-        { venue: req.params.venue },
-        { venue: req.body.name },
-        { date: req.params.date },
-        { date: req.body.name },
-        { new: true }
+        {venue: req.params.venue},
+        {venue: req.body.name},
+        {date: req.params.date},
+        {date: req.body.name},
+        {new: true}
       );
 
       res.locals.gig = updatedGig;
@@ -59,7 +59,7 @@ const gigController = {
       return next({
         log: 'An error occurred within the updateGig controller found in gigController.js.',
         status: 400,
-        message: { err: 'An error occurred when trying to update gig.' },
+        message: {err: 'An error occurred when trying to update gig.'},
       });
     }
   },
@@ -109,8 +109,8 @@ const gigController = {
   async deleteGig(req, res, next) {
     try {
       const deletedStudent = Gig.findOneAndDelete(
-        { venue: req.params.venue },
-        { date: req.params.date }
+        {venue: req.params.venue},
+        {date: req.params.date}
       );
 
       res.locals.gig = deletedStudent;
@@ -119,7 +119,7 @@ const gigController = {
       return next({
         log: 'An error occurred within the deleteGig controller found in gigController.js.',
         status: 400,
-        message: { err: 'An error occurred when trying to delete gig.' },
+        message: {err: 'An error occurred when trying to delete gig.'},
       });
     }
   },

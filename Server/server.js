@@ -3,10 +3,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
-
 const PORT = 3000;
-const apiRouter = require('./Routes/api.js')
-const userRouter = require('./Routes/user.js');
+const apiRouter = require('./routes/api.js');
+const userRouter = require('./routes/user.js');
 
 // connectToDb();
 /**

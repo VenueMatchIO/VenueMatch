@@ -9,6 +9,7 @@ import * as types from '../constants/actionTypes';
 ==================
   Fetch All Data
 ==================
+Note: On load action
 */
 export const fetchData = () => {
   return async (dispatch) => {

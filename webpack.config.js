@@ -20,6 +20,10 @@ module.exports = {
         test: /\.s?css/, // styles files
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
+      {
+        test: /\.svg$/,
+        use: 'file-loader',
+      },
     ],
   },
   plugins: [
@@ -33,8 +37,8 @@ module.exports = {
     hot: true,
     headers: {'Access-Control-Allow-Origin': '*'},
     static: {
-      directory: path.resolve(__dirname, 'Dist'),
-      publicPath: '/build',
+      directory: path.resolve(__dirname, 'dist'),
+      publicPath: '/dist',
     },
     proxy: {
       '/api': {
