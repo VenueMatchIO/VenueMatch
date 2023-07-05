@@ -5,23 +5,25 @@ CREATE TABLE players (
 
 CREATE TABLE instruments (
     id SERIAL PRIMARY KEY,
-    name VARCHAR
+    name VARCHAR,
+    classification VARCHAR
 );
 
 CREATE TABLE venues (
     id SERIAL PRIMARY KEY,
-    name VARCHAR
+    name VARCHAR,
     location VARCHAR
 );
 
 CREATE TABLE gigs (
     id SERIAL PRIMARY KEY,
-    name VARCHAR
+    name VARCHAR,
+    date VARCHAR,
     venue_id INT,
-    FOREIGN KEY (venue.id) REFERENCES Venues(id)
+    FOREIGN KEY (venues.id) REFERENCES venues(id)
 )
 
-CREATE TABLE players_to_Instruments (
+CREATE TABLE players_instruments (
     player_id INT,
     instrument_id INT,
     PRIMARY KEY (player_id, instrument_id),
@@ -29,10 +31,20 @@ CREATE TABLE players_to_Instruments (
     FOREIGN KEY (instrument_id) REFERENCES Instruments(id)
 )
 
-CREATE TABLE players_to_Gigs (
+CREATE TABLE instruments_players_gigs (
+    instrument_id INT
+    gig_id INT
+    player_id INT -- null ok
+    PRIMARY KEY (instruments_id, player_id, gig_id),
+    FOREIGN KEY (instruments_id) REFERENCES instruments(id),
+    FOREIGN KEY (players_id)  REFERENCES players(id),
+    FOREIGN KEY (gigs_id) REFERENCES gigs(id)
+)
+
+CREATE TABLE players_gigs (
     player_id INT,
     gig_id INT,
     PRIMARY KEY (player_id, gig_id),
-    FOREIGN KEY (player_id)  REFERENCES Players(id),
-    FOREIGN KEY (gig_id) REFERENCES Gigs(id)
+    FOREIGN KEY (player_id)  REFERENCES players(id),
+    FOREIGN KEY (gig_id) REFERENCES gigs(id)
 )
