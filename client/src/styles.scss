@@ -255,3 +255,24 @@ Modal Styles
   font-family: Comfortaa;
   color: $SuperDarkFont;
 }
+
+/*
+===================
+Venue Page Styles
+===================
+*/
+
+.venue-header {
+  display: flex;
+  justify-content: center;
+}
+
+.venue-creator {
+  display: flex;
+  justify-content: center;
+  width: 45em;
+  height: 20em;
+  background-color: $Tertiary;
+  border: 1pt solid $Primary;
+  border-radius: 15px;
+}
