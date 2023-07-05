@@ -17,8 +17,30 @@ module.exports = {
         exclude: /(node_modules)/,
       },
       {
-        test: /\.s?css/, // styles files
+        test: /\.scss$/, // styles files
+        exclude: /\.module\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+      {
+        test: /\.module\.scss$/, // styles files
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                mode: 'local',
+                exportGlobals: true,
+                localIdentName: '[name]__[local]___[hash:base64:5]',
+                exportOnlyLocals: false,
+              },
+              importLoaders: 1,
+              sourceMap: true,
+            },
+          },
+          ,
+          'sass-loader',
+        ],
       },
       {
         test: /\.svg$/,

@@ -9,4 +9,4 @@ router.get('/session', (req, res, next) => {
   res.sendStatus(200);
 });
 
-module.exports = userRouter;
+module.exports = router;
