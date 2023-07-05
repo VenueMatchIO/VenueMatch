@@ -5,7 +5,7 @@ class Instrument {
 
   async createInstrument() {}
 
-  async getInstrument() {}
+  async getInstrument(id) {}
 
   async updateInstrument() {}
 

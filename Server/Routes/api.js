@@ -8,12 +8,12 @@ const router = express.Router();
 //Gig Routes
 router.post('/gig', gigController.createGig, (req, res) => {
   console.log('Hello from gigRoutes post');
-  return res.status(201).json(res.locals.gig);
+  return res.status(201).json(res.locals);
 });
 
 router.get('/gig', gigController.getGig, (req, res) => {
   console.log('Hello from gigRoutes get');
-  return res.status(200).json(res.locals.gig);
+  return res.status(200).json(res.locals);
 });
 
 router.patch('/gig', gigController.updateGig, (req, res) => {
@@ -46,26 +46,26 @@ router.delete('/instrument', instController.deleteInstrument, (req, res) => {
 //Player Routes
 router.post('/player', playerController.createPlayer, (req, res) => {
   console.log('Hello from playerRoutes post');
-  return res.status(201).json(res.locals.player);
+  return res.status(201).json(res.locals);
 });
 
 router.get('/', playerController.getAllPlayers, (req, res) => {
   console.log('Hello from getting all players');
-  return res.status(200).json(res.locals.players);
+  return res.status(200).json(res.locals);
 });
 
 router.get('/player', playerController.getPlayer, (req, res) => {
   console.log('Hello from playerRoutes get');
-  return res.status(200).json(res.locals.player);
+  return res.status(200).json(res.locals);
 });
 
 router.patch('/player', playerController.updatePlayer, (req, res) => {
   console.log('Hello from playerRoutes update');
-  return res.status(200).json(res.locals.player);
+  return res.status(200).json(res.locals);
 });
 
 router.delete('/player', playerController.deletePlayer, (req, res) => {
-  return res.status(200).json(res.locals.player);
+  return res.status(200).json(res.locals);
 });
 
 //Venue Routes

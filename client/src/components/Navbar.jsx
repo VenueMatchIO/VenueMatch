@@ -12,8 +12,8 @@ function Navbar() {
     <div className='navbar-container'>
       <div className='navbar-header'>
         <LogoSVG
-          width={150}
-          height={50}
+          width={250}
+          height={100}
           fill={tertiaryColor}
           className='navbar-logo'
           onClick={() => navigate('/')}

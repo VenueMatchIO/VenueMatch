@@ -7,7 +7,6 @@ const PORT = 3000;
 const apiRouter = require('./routes/api.js');
 const userRouter = require('./routes/user.js');
 
-// connectToDb();
 /**
  * handle parsing request body
  */

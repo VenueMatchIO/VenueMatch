@@ -43,6 +43,7 @@ instController.createInstrument = async (req, res, next) => {
   const newInstrument = new Instrument(name);
   try {
     newInstrument.createInstrument();
+    res.locals = newInstrument;
     console.log('New instrument created: ', newInstrument);
     return next();
   } catch (error) {
@@ -54,6 +55,14 @@ instController.createInstrument = async (req, res, next) => {
       },
     });
   }
+};
+
+instController.updateInstrument = async (req, res, next) => {
+  return next();
+};
+
+instController.deleteInstrument = async (req, res, next) => {
+  return next();
 };
 
 module.exports = instController;
