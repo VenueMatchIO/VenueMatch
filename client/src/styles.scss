@@ -1,15 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Comfortaa:wght@300;400;500&display=swap');
+
 /*
 =================
 Styling Variables
 =================
 */
 
-:root {
-  --accent: #f5f3e8;
-  --darkAccent: #cdc2ae;
-  --main: #116a7b;
-  --mainAlt: #c2dedc;
-}
+
+$Primary: rgb(9, 103, 197);
+$Secondary: scale-color($Primary, $lightness: 70%);
+$Tertiary: scale-color(rgb(174,238,238), $lightness: 85%);
+$LightFont: scale-color($Primary, $lightness: 95%);
+$Dark: scale-color($Primary, $lightness: -40%);
+$SuperDarkFont: scale-color($Dark, $lightness: -50%);
 
 /*
 ============
@@ -19,14 +22,16 @@ Main Styles
 
 body {
   margin: 0;
-  background-color: var(--mainAlt);
+  // background-color: $Secondary;
+  background: rgb(174,238,238);
+  background: linear-gradient(90deg, rgba(174,238,238,1) 0%, rgba(73,165,255,0.5718662464985995) 100%);
 }
 .app {
   display: flex;
 }
 .main {
   padding: 4em;
-  background-color: var(--mainAlt);
+  // background-color: $Secondary;
   margin: 0 auto;
 }
 
@@ -39,12 +44,13 @@ Navbar Styles
 .navbar-container {
   display: flex;
   flex-direction: column;
-  background-color: var(--main);
+  background-color: $Dark;
   height: 5em;
   align-items: center;
   padding: 2em 1em 2em 1em;
   height: 100vh;
   box-sizing: border-box;
+  border-right: 1px solid $Primary;
 }
 
 .navbar-header {
@@ -54,13 +60,14 @@ Navbar Styles
 }
 
 .navbar-logo {
-  color: var(--accent);
+  color: $Tertiary;
   cursor: pointer;
   user-select: none;
 }
 
 .navbar-greeting {
-  color: var(--accent);
+  font-family: Comfortaa;
+  color: $Tertiary;
   user-select: none;
 }
 
@@ -71,6 +78,20 @@ Navbar Styles
 
 .navbar-routes > button {
   margin: 1em;
+  cursor: pointer;
+  color: $SuperDarkFont;
+  font-size: 12pt;
+  background-color: $Tertiary;
+  border: 1px solid $Primary;
+  border-radius: 5px;
+  width: 8em;
+  height: 2em;
+  font-family: Comfortaa;
+}
+
+.navbar-routes > button:hover {
+  color: $Tertiary;
+  background-color: $Primary;
 }
 
 /*
@@ -106,19 +127,21 @@ Control Container Styles
 .control-btn {
   margin: 2em 5em 1em 5em;
   padding: 1em;
-  width: 10em;
-  border-radius: 25px;
+  width: 11em;
+  border-radius: 15px;
   cursor: pointer;
+  font-family: Comfortaa;
+  // font-style: light;
   font-size: 1.25em;
-  color: white;
-  background-color: var(--main);
+  color: $Tertiary;
+  background-color: $Dark;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
   user-select: none;
 }
 
 .control-btn:hover {
-  color: var(--main);
-  background-color: white;
+  color: $Tertiary;
+  background-color: $Primary;
 }
 
 /*
@@ -132,13 +155,15 @@ Information Display Styles
   flex-direction: column;
   align-items: center;
   align-self: center;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+  color: $SuperDarkFont;
   border: 2px solid;
-  border-color: var(--main);
-  border-radius: 25px;
+  border-color: $Primary;
+  border-radius: 3px;
   padding: 0 25em 1em 25em;
   margin: 5em 0 5em 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
-  background: rgb(238, 235, 235);
+  background: $Tertiary;
 }
 
 /*
@@ -158,7 +183,7 @@ Data Container Styles
   font-size: 1.5em;
   width: 50vw;
   cursor: pointer;
-  background-color: var(--main);
+  background-color: $Primary;
   color: white;
   border: 2px solid white;
   border-radius: 25px;
@@ -169,9 +194,9 @@ Data Container Styles
 }
 
 .data-button:hover {
-  background-color: white;
-  color: var(--main);
-  border-color: var(--main);
+  background-color: $Secondary;
+  color: $Primary;
+  border-color: $Primary;
 }
 
 .data-btn-label {
@@ -191,9 +216,11 @@ Modal Styles
 .modal-container {
   position: absolute;
   z-index: 100;
-  background: white;
-  border: 1px solid var(--main);
-  border-radius: 25px;
+  background: $Tertiary;
+  border: 1px solid $Primary;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  color: $SuperDarkFont;
 }
 
 .modal-header {
@@ -201,6 +228,7 @@ Modal Styles
   justify-content: space-between;
   align-items: center;
   margin: 1em;
+  font-family: Comfortaa;
 }
 
 .modal-header > button {
@@ -208,8 +236,10 @@ Modal Styles
   background: transparent;
   border: none;
   cursor: pointer;
+  font-family: Comfortaa;
   font-weight: bolder;
   font-size: 1.5em;
+  color: $SuperDarkFont
 }
 
 .modal-header > button:hover {
