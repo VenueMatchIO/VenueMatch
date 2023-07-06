@@ -1,9 +1,8 @@
 const db = require('../database/db');
 
 class Venue {
-  constructor(name, venueId, location) {
+  constructor(name, location) {
     this.name = name;
-    this.venueId = venueId;
     this.location = location;
   }
 
@@ -39,9 +38,9 @@ class Venue {
     }
   }
 
-  async deleteVenue() {
+  static async deleteVenue(venueId) {
     try {
-      const response = await db.deleteVenue(this.venueId);
+      const response = await db.deleteVenue(venueId);
       return response.rows;
     } catch (error) {
       console.error(error);

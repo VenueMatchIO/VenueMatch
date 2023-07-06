@@ -16,7 +16,7 @@ venueController.createVenue = async (req, res, next) => {
   const newVenue = new Venue(name, location);
   console.log('Creating a new venue...');
   try {
-    newVenue.createVenue();
+    await newVenue.createVenue();
     res.locals = newVenue;
     console.log('New venue created successfully', newVenue);
     return next();
@@ -52,7 +52,27 @@ venueController.updateVenue = async (req, res, next) => {
 };
 
 venueController.deleteVenue = async (req, res, next) => {
-  return next();
+  const {venueId} = req.body;
+  if (!venueId) {
+    return next({
+      error: 'No venueId in delete venue',
+      status: 400,
+      message: {err: 'Error in deleteVenue method of venueController'},
+    });
+  }
+
+  try {
+    const response = await Venue.deleteVenue(venueId);
+    res.locals = response;
+    return next();
+  } catch (error) {
+    console.error(error);
+    return next({
+      error: error,
+      status: 400,
+      message: {err: 'error in deleteVenue method on venueController'},
+    });
+  }
 };
 
 module.exports = venueController;

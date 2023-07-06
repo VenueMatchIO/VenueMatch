@@ -7,7 +7,9 @@ Player Queries
 */
 
 const createPlayer = async (name) => {
-  return await db.query('INSERT INTO players (name) VALUES ($1)', [name]);
+  return await db.query('INSERT INTO players (name) VALUES ($1) RETURNING *', [
+    name,
+  ]);
 };
 
 const updatePlayer = async (id, name) => {
@@ -18,6 +20,11 @@ const updatePlayer = async (id, name) => {
 };
 
 const deletePlayer = async (id) => {
+  await db.query('DELETE FROM players_instruments WHERE player_id = $1', [id]);
+  await db.query(
+    'UPDATE instruments_players_gigs SET player_id = null WHERE player_id = $1',
+    [id]
+  );
   return await db.query('DELETE FROM players WHERE id = $1', [id]);
 };
 
@@ -33,6 +40,24 @@ const getPlayerByInstrument = async (instrumentId) => {
   `;
 
   return await db.query(query, [instrumentId]);
+};
+
+const createPlayerInstrument = async (playerId, instruments) => {
+  try {
+    // Constructing the query
+    let values = '';
+    instruments.forEach((instrument, i) => {
+      values +=
+        i !== instruments.length - 1
+          ? `(${playerId}, ${instrument}),`
+          : `(${playerId}, ${instrument})`;
+    });
+
+    const query = `INSERT INTO players_instruments (player_id, instrument_id) VALUES ${values}`;
+    return await db.query(query);
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 /*
@@ -57,6 +82,16 @@ const deleteInstrument = async (id) => {
 
 const fetchInstruments = async () => {
   return await db.query('SELECT * FROM instruments');
+};
+
+const fetchInstrumentsByPlayer = async (id) => {
+  const query = `
+    SELECT i.* FROM instruments i
+    INNER JOIN players_instruments pi ON pi.instrument_id = i.id
+    WHERE pi.player_id = $1
+    `;
+
+  return await db.query(query, [id]);
 };
 /*
 =================
@@ -160,14 +195,23 @@ const removeInstrumentGig = async (joinId) => {
 
   return await db.query(query, [joinId]);
 };
+
+const getGigsByVenue = async (venueId) => {
+  const query = `SELECT g.* FROM gigs g WHERE g.venue_id = $1`;
+
+  return await db.query(query, [venueId]);
+};
 /*
 =================
 Venue Queries
 =================
 */
 
-const createVenue = async (name) => {
-  return await db.query('INSERT INTO venues (name) VALUES ($1)', [name]);
+const createVenue = async (name, location) => {
+  return await db.query('INSERT INTO venues (name, location) VALUES ($1, $2)', [
+    name,
+    location,
+  ]);
 };
 
 const updateVenue = async (id, name) => {
@@ -178,7 +222,22 @@ const updateVenue = async (id, name) => {
 };
 
 const deleteVenue = async (id) => {
-  return await db.query('DELETE FROM venues WHERE id = $1', [id]);
+  await db.query(
+    `  DELETE FROM instruments_players_gigs
+  WHERE gig_id IN (SELECT id FROM gigs WHERE venue_id = $1);`,
+    [id]
+  );
+
+  await db.query(
+    `DELETE FROM gigs WHERE venue_id = $1;
+  `,
+    [id]
+  );
+  return await db.query(
+    `DELETE FROM venues WHERE id = $1;
+  `,
+    [id]
+  );
 };
 
 const fetchVenues = async () => {
@@ -208,4 +267,7 @@ module.exports = {
   getPlayerByInstrument,
   fillGigPlayer,
   removeInstrumentGig,
+  createPlayerInstrument,
+  fetchInstrumentsByPlayer,
+  getGigsByVenue,
 };

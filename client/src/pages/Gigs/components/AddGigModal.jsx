@@ -21,7 +21,7 @@ function AddGigModal({closeModal}) {
       instruments: [],
     };
     const response = await axios.post('/api/gig', body);
-    console.log(response);
+
     if (response.status === 201) {
       dispatch(fetchGigs());
       closeModal();

@@ -26,7 +26,11 @@ function GigsDisplay({gigs}) {
     }
   }
 
-  const gigComponents = gigs.map((gig) => {
+  function compareByDate(a, b) {
+    return new Date(a.date) - new Date(b.date);
+  }
+
+  const gigComponents = gigs.sort(compareByDate).map((gig) => {
     return (
       <div className='gig-display-container' key={uuid()}>
         <Gig data={gig} />

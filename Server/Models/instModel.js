@@ -9,7 +9,7 @@ class Instrument {
   async createInstrument() {
     let createInstrumentData;
     try {
-      const response = await db.createInstrument(this.name, this.instrumentId);
+      const response = await db.createInstrument(this.name);
       createInstrumentData = response.rows;
       return createInstrumentData;
     } catch (error) {
@@ -41,6 +41,16 @@ class Instrument {
   async deleteInstrument() {
     try {
       const response = await db.deleteGig(this.id);
+      return response.rows;
+    } catch (error) {
+      console.error(error);
+      return error;
+    }
+  }
+
+  static async getInstrumentByPlayer(playerId) {
+    try {
+      const response = await db.fetchInstrumentsByPlayer(playerId);
       return response.rows;
     } catch (error) {
       console.error(error);
