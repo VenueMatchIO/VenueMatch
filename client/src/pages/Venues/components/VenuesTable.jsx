@@ -1,4 +1,8 @@
-import {faTrashCan} from '@fortawesome/free-solid-svg-icons';
+import {
+  faArrowDown,
+  faArrowRight,
+  faTrashCan,
+} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import React, {useState} from 'react';
@@ -56,7 +60,15 @@ function VenuesTable({venues}) {
         <td>{venue.location}</td>
         <td>
           <button onClick={() => handleGigs(venue.id, venueGigs[venue.id])}>
-            {venueGigs[venue.id] ? 'Hide Gigs' : 'Show Gigs'}
+            {venueGigs[venue.id] ? (
+              <span>
+                Hide Gigs <FontAwesomeIcon icon={faArrowDown} />{' '}
+              </span>
+            ) : (
+              <span>
+                Show Gigs <FontAwesomeIcon icon={faArrowRight} />
+              </span>
+            )}
           </button>
           {venueGigs[venue.id] && (
             <div className='player-table-inst-array'>{showGigs(venue.id)}</div>
