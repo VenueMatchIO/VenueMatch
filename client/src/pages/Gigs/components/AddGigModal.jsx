@@ -47,20 +47,26 @@ function AddGigModal({closeModal}) {
         <h1>Add Gig</h1>
         <button onClick={closeModal}>X</button>
       </div>
-      <div className='modal-inputs'>
-        <form onSubmit={addGig}>
-          <input placeholder='Gig Name' name='name' />
-          <input placeholder='Date' type='date' name='date' />
-          <div className='add-gig-venue-select'>
-            <p>Venue: </p>
-            <select className='add-gig-select-box' name='venue'>
-              {options}
-            </select>
-          </div>
-          <button>Add Gig</button>
-        </form>
-        {error && 'You need to fill in all the fields'}
-      </div>
+
+      <form className='modal-form' onSubmit={addGig}>
+        <div className='modal-inputs'>
+          <input className='modal-input' placeholder='Gig Name' name='name' />
+          <input
+            className='modal-input'
+            placeholder='Date'
+            type='date'
+            name='date'
+          />
+        </div>
+        <div className='add-gig-venue-select'>
+          <p>Venue: </p>
+          <select className='add-gig-select-box' name='venue'>
+            {options}
+          </select>
+        </div>
+        <button>Add Gig</button>
+      </form>
+      {error && 'You need to fill in all the fields'}
     </div>
   );
 }
