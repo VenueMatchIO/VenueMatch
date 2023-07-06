@@ -15,12 +15,19 @@ export const fetchData = () => {
   return async (dispatch) => {
     try {
       // get every player, gig, venue and instrument at once
-      const [players, gigs, venues, instruments] = await Promise.all([
-        axios.get('/api/players'),
-        axios.get('/api/gigs'),
-        axios.get('/api/venues'),
-        axios.get('/api/instruments'),
-      ]);
+      // const [players, gigs, venues, instruments] = await Promise.all([
+      //   axios.get('/api/players'),
+      //   axios.get('/api/gigs'),
+      //   axios.get('/api/venues'),
+      //   axios.get('/api/instruments'),
+      // ]);
+
+      // temp test stuff
+      const gigs = await axios.get('/api/gigs');
+      const players = {data: []};
+      const venues = await axios.get('/api/venues');
+      const instruments = {data: []};
+      console.log(gigs.data);
       // update state with what the database returns
       dispatch({
         type: types.FETCH_DATA,

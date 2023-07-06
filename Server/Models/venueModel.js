@@ -19,7 +19,7 @@ class Venue {
     }
   }
 
-  async getVenues() {
+  static async getVenues() {
     try {
       const response = await db.fetchVenues();
       return response.rows;
@@ -48,6 +48,6 @@ class Venue {
       return error;
     }
   }
-};
+}
 
 module.exports = Venue;

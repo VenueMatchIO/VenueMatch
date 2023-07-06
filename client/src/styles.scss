@@ -9,14 +9,32 @@ Main Styles
 
 body {
   margin: 0;
-  // background-color: $Secondary;
-  background: rgb(174, 238, 238);
+  background-color: $Secondary;
+  // background: rgb(174,238,238);
+  // background: linear-gradient(90deg, rgba(174,238,238,1) 0%, rgba(73,165,255,0.5718662464985995) 100%);
+  // background: rgb(152,136,249);
+  // background: linear-gradient(90deg, rgba(152,136,249,1) 0%, rgba(194,118,120,1) 4%, rgba(204,134,114,1) 8%, rgba(241,189,95,1) 13%, rgba(172,244,197,1) 38%, rgba(164,250,209,1) 50%, rgba(182,235,182,1) 62%, rgba(241,189,95,1) 87%, rgba(204,134,114,1) 92%, rgba(194,118,120,1) 96%, rgba(152,136,249,1) 100%);
+  // background-image: url('./assets/magnus-lunay-LHR6tUw8N34-unsplash.jpg');
+  // background-size:cover;
+  // background: rgb(152,136,249);
+  // background: linear-gradient(90deg, rgba(152,136,249,1) 0%, rgba(194,118,120,1) 4%, rgba(204,134,114,1) 8%, rgba(241,189,95,1) 13%, rgba(172,244,197,1) 20%, rgba(204,196,255,1) 30%, rgba(164,223,250,1) 50%, rgba(204,196,255,1) 70%, rgba(182,235,182,1) 80%, rgba(241,189,95,1) 87%, rgba(204,134,114,1) 92%, rgba(194,118,120,1) 96%, rgba(152,136,249,1) 100%);
+
+  //   background: rgb(152,136,249);
+  // background: linear-gradient(90deg, rgba(152,136,249,1) 0%, rgba(194,118,120,1) 4%, rgba(204,134,114,1) 8%, rgba(241,189,95,1) 13%, rgba(172,244,197,1) 18%, rgba(204,196,255,1) 30%, rgba(164,223,250,1) 62%, rgba(204,196,255,1) 100%);
+  background: rgb(152, 136, 249);
   background: linear-gradient(
     90deg,
-    rgba(174, 238, 238, 1) 0%,
-    rgba(73, 165, 255, 0.5718662464985995) 100%
+    rgba(152, 136, 249, 1) 0%,
+    rgba(194, 118, 120, 1) 4%,
+    rgba(204, 134, 114, 1) 8%,
+    rgba(241, 189, 95, 1) 13%,
+    rgba(172, 244, 197, 1) 18%,
+    rgba(204, 196, 255, 1) 30%,
+    rgba(164, 223, 250, 1) 62%,
+    rgba(204, 196, 255, 1) 100%
   );
 }
+
 .app {
   display: flex;
 }
@@ -35,11 +53,11 @@ Navbar Styles
 .navbar-container {
   display: flex;
   flex-direction: column;
-  background-color: $Dark;
+  background-color: transparentize($Dark, 0.8);
   height: 5em;
+  width: 17em;
   align-items: center;
   padding: 2em 1em 2em 1em;
-  height: 100vh;
   box-sizing: border-box;
   border-right: 1px solid $Primary;
 }
@@ -60,6 +78,8 @@ Navbar Styles
   font-family: Comfortaa;
   color: $Tertiary;
   user-select: none;
+  margin: 30px;
+  margin-top: 50px;
 }
 
 .navbar-routes {
@@ -68,21 +88,26 @@ Navbar Styles
 }
 
 .navbar-routes > button {
-  margin: 1em;
+  margin: 0.8em;
   cursor: pointer;
   color: $SuperDarkFont;
-  font-size: 12pt;
-  background-color: $Tertiary;
+  font-size: 13pt;
+  background: transparentize($Tertiary, 0.2);
   border: 1px solid $Primary;
-  border-radius: 5px;
-  width: 8em;
-  height: 2em;
+  border-radius: 7px;
+  width: 9em;
+  height: 3em;
   font-family: Comfortaa;
+}
+
+.navbar-routes > .active {
+  color: $Tertiary;
+  background: transparentize($Primary, 0.2);
 }
 
 .navbar-routes > button:hover {
   color: $Tertiary;
-  background-color: $Primary;
+  background: transparentize($Primary, 0.2);
 }
 
 /*
@@ -125,14 +150,14 @@ Control Container Styles
   // font-style: light;
   font-size: 1.25em;
   color: $Tertiary;
-  background-color: $Dark;
+  background: transparentize($Dark, 0.2);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
   user-select: none;
 }
 
 .control-btn:hover {
   color: $Tertiary;
-  background-color: $Primary;
+  background: transparentize($Primary, 0.2);
 }
 
 /*
@@ -155,7 +180,7 @@ Information Display Styles
   padding: 0 25em 1em 25em;
   margin: 5em 0 5em 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
-  background: $Tertiary;
+  background: transparentize($Tertiary, 0.2);
 }
 
 /*
@@ -213,6 +238,7 @@ Modal Styles
   border-radius: 4px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
   color: $SuperDarkFont;
+  width: 25em;
 }
 
 .modal-header {
@@ -240,10 +266,164 @@ Modal Styles
 
 .modal-inputs {
   margin: 0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .modal-inputs > input {
   margin: 0.5em;
   font-family: Comfortaa;
   color: $SuperDarkFont;
+}
+
+.fill-modal-form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.fill-modal-btn {
+  border-radius: 25px;
+  margin-top: 1em;
+  padding: 0.25em;
+  background-color: $Primary;
+  color: $Tertiary;
+  border-color: $Primary;
+  cursor: pointer;
+}
+
+.fill-modal-btn:hover {
+  color: $Primary;
+  background-color: $Tertiary;
+  border-color: $Primary;
+}
+
+/*
+=============
+Gig Styles
+=============
+*/
+
+.gig-display-container {
+  display: flex;
+  align-items: center;
+}
+
+.gig-delete-btn {
+  height: 3em;
+  border-radius: 25px;
+  color: white;
+  background: red;
+  cursor: pointer;
+}
+
+.add-gig-venue-select {
+  display: flex;
+  align-items: center;
+}
+
+.add-gig-select-box {
+  height: 1.5em;
+  margin-left: 0.25em;
+}
+.gig-btn {
+  width: calc(85vw - $NavbarWidth);
+  margin: 1em;
+  cursor: pointer;
+  border-radius: 25px;
+  background-color: $Tertiary;
+  color: $SuperDarkFont;
+  border-color: $Primary;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+.gig-btn-contents {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.5em 0 0.5em;
+}
+
+.gig-btn-contents > * {
+  font-size: 1.2em;
+}
+
+.gig-btn:hover {
+  color: $Tertiary;
+  background-color: $Primary;
+  border-color: $Tertiary;
+}
+
+.gig-table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gig-table > table {
+  font-size: 2em;
+}
+
+.gig-table > button {
+  font-size: 1.2em;
+  margin-top: 0.5em;
+  border-radius: 25px;
+  padding: 0 0.5em 0 0.5em;
+  width: 33%;
+  color: $SuperDarkFont;
+  background-color: $Tertiary;
+  cursor: pointer;
+}
+
+.gig-table > button:hover {
+  color: $Tertiary;
+  background-color: $Primary;
+}
+
+.gig-table-fill-btn {
+  color: $Dark;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+table {
+  width: 75%;
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+td {
+  font-size: 0.5em;
+}
+
+th {
+  background-color: $Dark;
+  color: white;
+  font-size: 0.75em;
+}
+
+tr:nth-child(even) {
+  background-color: white;
+}
+
+/* Optional hover effect */
+tr:hover {
+  background-color: #e6e6e6;
+}
+
+/* Optional additional styling */
+table {
+  font-family: Arial, sans-serif;
+}
+
+caption {
+  font-weight: bold;
+  margin-bottom: 10px;
 }

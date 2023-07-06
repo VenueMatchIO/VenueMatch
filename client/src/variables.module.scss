@@ -4,6 +4,7 @@ $Tertiary: scale-color(rgb(174, 238, 238), $lightness: 85%);
 $LightFont: scale-color($Primary, $lightness: 95%);
 $Dark: scale-color($Primary, $lightness: -40%);
 $SuperDarkFont: scale-color($Dark, $lightness: -50%);
+$NavbarWidth: 17em;
 
 :export {
   primaryColor: $Primary;

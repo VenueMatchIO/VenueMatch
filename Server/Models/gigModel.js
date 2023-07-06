@@ -1,17 +1,5 @@
 const db = require('../database/db');
 
-/*
-
-const {gigName, venueId, date, instruments} = req.body;
-
-const newGig = new Gig(gigName, venueId, date, instruments)
-newGig.createGig()
-
-
-Gig {name: gigName, venueId: venueId, date: date, instruments: [id's]}
-
-*/
-
 class Gig {
   constructor(name, venueId, date, instruments) {
     this.name = name;
@@ -32,14 +20,11 @@ class Gig {
 
     const gigId = createGigData[0].id;
 
-    try {
-      const response = await db.insertInstrumentGig(this.instruments, gigId);
-    } catch (error) {
-      console.error(error);
-      return error;
+    if (this.instruments.length !== 0) {
+      const response = await Gig.insertInstrument(this.instruments, gigId);
     }
 
-    return createGigData;
+    return createGigData[0];
   }
 
   static async getGigs() {
@@ -67,9 +52,59 @@ class Gig {
     }
   }
 
-  async deleteGig() {
+  static async fillGigPlayer(gigId, playerId, instrumentId) {
     try {
-      const response = await db.deleteGig(this.id);
+      const response = await db.fillGigPlayer(gigId, playerId, instrumentId);
+      return response.rows;
+    } catch (error) {
+      console.error(error);
+      return error;
+    }
+  }
+
+  static async deleteGig(gigId) {
+    try {
+      const response = await db.deleteGig(gigId);
+      return response.rows;
+    } catch (error) {
+      console.error(error);
+      return error;
+    }
+  }
+
+  static async joinGigVenue() {
+    try {
+      const response = await db.getGigVenueJoinData();
+      return response.rows;
+    } catch (error) {
+      console.error(error);
+      return error;
+    }
+  }
+
+  static async getGigDetails(id) {
+    try {
+      const response = await db.getGigPlayerInstrument(id);
+      return response.rows;
+    } catch (error) {
+      console.error(error);
+      return error;
+    }
+  }
+
+  static async insertInstrument(instrumentId, gigId) {
+    try {
+      const response = await db.insertInstrumentGig([instrumentId], gigId);
+      return response.rows;
+    } catch (error) {
+      console.error(error);
+      return error;
+    }
+  }
+
+  static async removeInstrument(joinId) {
+    try {
+      const response = await db.removeInstrumentGig(joinId);
       return response.rows;
     } catch (error) {
       console.error(error);

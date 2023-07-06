@@ -1,4 +1,4 @@
-const db = require('../database/db')
+const db = require('../database/db');
 
 class Instrument {
   constructor(name, instrumentId) {
@@ -8,7 +8,7 @@ class Instrument {
 
   async createInstrument() {
     let createInstrumentData;
-    try{
+    try {
       const response = await db.createInstrument(this.name, this.instrumentId);
       createInstrumentData = response.rows;
       return createInstrumentData;
@@ -18,7 +18,7 @@ class Instrument {
     }
   }
 
-  async getInstruments() {
+  static async getInstruments() {
     try {
       const response = await db.fetchInstruments();
       return response.rows;
@@ -29,7 +29,7 @@ class Instrument {
   }
 
   async updateInstrument(id, name) {
-    try{
+    try {
       const response = await db.updateInstrument(this.id, this.name);
       return response.rows;
     } catch (error) {
@@ -47,6 +47,6 @@ class Instrument {
       return error;
     }
   }
-};
+}
 
 module.exports = Instrument;

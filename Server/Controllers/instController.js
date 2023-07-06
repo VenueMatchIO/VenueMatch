@@ -28,6 +28,22 @@ instController.getInstrument = async (req, res, next) => {
   }
 };
 
+instController.getInstruments = async (req, res, next) => {
+  try {
+    const instruments = await Instrument.getInstruments();
+    res.locals = instruments;
+    return next();
+  } catch (error) {
+    return next({
+      error: error,
+      status: 400,
+      message: {
+        err: 'Error getting instruments from DB in getInstruments method on instController',
+      },
+    });
+  }
+};
+
 instController.createInstrument = async (req, res, next) => {
   const {name} = req.body;
   if (!name) {
