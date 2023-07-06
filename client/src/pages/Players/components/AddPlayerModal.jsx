@@ -18,7 +18,6 @@ function AddPlayerModal({closeModal}) {
     const isChecked = checkedIds.includes(instrument.id.toString());
     return (
       <div key={uuid()} className='add-player-inst-select'>
-        <label htmlFor={instrument.name}>{instrument.name}</label>
         <input
           onChange={handleChange}
           type='checkbox'
@@ -26,6 +25,7 @@ function AddPlayerModal({closeModal}) {
           id={instrument.name}
           checked={isChecked}
         />
+        <label htmlFor={instrument.name}>{instrument.name}</label>
       </div>
     );
   });
@@ -74,8 +74,7 @@ function AddPlayerModal({closeModal}) {
       </div>
       <div className='modal-inputs'>
         <form onSubmit={addPlayer}>
-          <input placeholder='Player Name' name='name' />
-
+          <input className='inst-input-add-player' placeholder='Player Name' name='name' />
           <p>Instruments: </p>
           <div className='add-player-inst-select-container'>{options}</div>
           <button>Add Player</button>

@@ -18,8 +18,10 @@ function PlayersPage() {
   return (
     <div>
       {showModal && <AddPlayerModal closeModal={closeModal} />}
-      <h1>Players</h1>
-      <button onClick={addPlayer}>Add Player</button>
+      <div className='various-heading'>
+        <h1>Players</h1>
+        <button onClick={addPlayer}>Add Player</button>
+      </div>
       <PlayersTable players={players} />
     </div>
   );
