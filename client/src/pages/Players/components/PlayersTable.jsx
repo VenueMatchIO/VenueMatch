@@ -1,4 +1,8 @@
-import {faTrashCan} from '@fortawesome/free-solid-svg-icons';
+import {
+  faArrowDown,
+  faArrowRight,
+  faTrashCan,
+} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
@@ -62,9 +66,15 @@ function PlayersTable(props) {
                 handleInstrument(e, player.id, playerInstruments[player.id])
               }
             >
-              {playerInstruments[player.id]
-                ? 'Hide Instruments'
-                : 'Show Instruments'}
+              {playerInstruments[player.id] ? (
+                <span>
+                  Hide Instruments <FontAwesomeIcon icon={faArrowDown} />
+                </span>
+              ) : (
+                <span>
+                  Show Instruments <FontAwesomeIcon icon={faArrowRight} />
+                </span>
+              )}
             </button>
             {playerInstruments[player.id] && (
               <div className='player-table-inst-array'>
