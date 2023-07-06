@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import AddPlayerModal from './components/AddPlayerModal';
 import {useSelector} from 'react-redux';
+import PlayersTable from './components/PlayersTable';
 
 function PlayersPage() {
   const [showModal, setShowModal] = useState(false);
@@ -19,6 +20,7 @@ function PlayersPage() {
       {showModal && <AddPlayerModal closeModal={closeModal} />}
       <h1>Players</h1>
       <button onClick={addPlayer}>Add Player</button>
+      <PlayersTable players={players} />
     </div>
   );
 }

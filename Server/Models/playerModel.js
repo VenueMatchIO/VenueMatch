@@ -25,7 +25,7 @@ class Player {
     }
   }
 
-  async getPlayers() {
+  static async getPlayers() {
     try {
       const response = await db.fetchPlayers();
       return response.rows;
@@ -49,9 +49,9 @@ class Player {
     }
   }
 
-  async deletePlayer() {
+  static async deletePlayer(playerId) {
     try {
-      const response = await db.deleteGig(this.playerId);
+      const response = await db.deletePlayer(playerId);
       return response.rows;
     } catch (error) {
       console.error(error);

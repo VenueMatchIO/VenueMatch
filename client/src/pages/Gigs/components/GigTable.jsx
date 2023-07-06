@@ -3,6 +3,8 @@ import {v4 as uuid} from 'uuid';
 import FillModal from './FillModal';
 import AddInstrumentModal from './AddInstrumentModal';
 import axios from 'axios';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faTrash, faTrashCan} from '@fortawesome/free-solid-svg-icons';
 
 function GigTable({gigDetails, gigId, reload}) {
   const [showModal, setShowModal] = useState(false);
@@ -66,8 +68,11 @@ function GigTable({gigDetails, gigId, reload}) {
             )}
           </td>
           <td>
-            <button onClick={() => removeInstrument(gig.join_id)}>
-              Remove
+            <button
+              className='table-remove-btn'
+              onClick={() => removeInstrument(gig.join_id)}
+            >
+              <FontAwesomeIcon icon={faTrashCan} />
             </button>
           </td>
         </tr>
@@ -90,12 +95,12 @@ function GigTable({gigDetails, gigId, reload}) {
   );
 
   return (
-    <div className='gig-table'>
+    <div className='data-table'>
       {gigTable}
       {showModal && (
         <FillModal data={modalData} gigId={gigId} closeModal={closeFillModal} />
       )}
-      <button className='gig-table-btn' onClick={showIModal}>
+      <button className='data-table-btn' onClick={showIModal}>
         Add Instrument...
       </button>
       {showInstModal && (

@@ -27,6 +27,7 @@ export const fetchData = () => {
       const players = await axios.get('/api/players');
       const venues = await axios.get('/api/venues');
       const instruments = await axios.get('/api/instruments');
+
       // update state with what the database returns
       dispatch({
         type: types.FETCH_DATA,
@@ -136,6 +137,7 @@ export const fetchPlayers = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get('/api/players');
+      console.log('Fetch Players: ', response.data);
       dispatch({type: types.FETCH_PLAYERS, payload: response.data});
     } catch (error) {
       console.error(error);

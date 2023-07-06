@@ -1,4 +1,5 @@
 const Player = require('../Models/playerModel.js');
+const dbConfig = require('../database/db.config.js');
 
 const playerController = {};
 
@@ -30,18 +31,8 @@ playerController.createPlayer = async (req, res, next) => {
 };
 
 playerController.getPlayers = async (req, res, next) => {
-  const {player_id: playerId} = req.query;
-  if (!playerId) {
-    return next({
-      log: 'No player ID provided',
-      status: 400,
-      message: {
-        err: 'Error in getPlayer method of playerController on player ID',
-      },
-    });
-  }
   try {
-    const players = await Player.getPlayer(playerId);
+    const players = await Player.getPlayers();
     res.locals = players;
     return next();
   } catch (error) {
@@ -60,6 +51,25 @@ playerController.updatePlayer = async (req, res, next) => {
 };
 
 playerController.deletePlayer = async (req, res, next) => {
+  const {playerId} = req.body;
+  if (!playerId) {
+    return next({
+      log: 'no player ID in req body for delete',
+      status: 400,
+      message: {err: 'error in deletePlayer of playerController'},
+    });
+  }
+
+  try {
+    const response = await Player.deletePlayer(playerId);
+    res.locals = response;
+  } catch (error) {
+    return next({
+      error: error,
+      status: 400,
+      message: {err: 'error in deletePlayer method in playerController'},
+    });
+  }
   return next();
 };
 

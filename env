@@ -1,2 +1,0 @@
-PG_URI = 'postgres://bxwikbag:QKHCEYRJP43IgG46COZCPKU2sWrzq88a@rajje.db.elephantsql.com/bxwikbag';
-PORT = 3000;

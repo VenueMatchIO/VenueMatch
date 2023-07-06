@@ -20,6 +20,11 @@ const updatePlayer = async (id, name) => {
 };
 
 const deletePlayer = async (id) => {
+  await db.query('DELETE FROM players_instruments WHERE player_id = $1', [id]);
+  await db.query(
+    'UPDATE instruments_players_gigs SET player_id = null WHERE player_id = $1',
+    [id]
+  );
   return await db.query('DELETE FROM players WHERE id = $1', [id]);
 };
 
@@ -77,6 +82,16 @@ const deleteInstrument = async (id) => {
 
 const fetchInstruments = async () => {
   return await db.query('SELECT * FROM instruments');
+};
+
+const fetchInstrumentsByPlayer = async (id) => {
+  const query = `
+    SELECT i.* FROM instruments i
+    INNER JOIN players_instruments pi ON pi.instrument_id = i.id
+    WHERE pi.player_id = $1
+    `;
+
+  return await db.query(query, [id]);
 };
 /*
 =================
@@ -229,4 +244,5 @@ module.exports = {
   fillGigPlayer,
   removeInstrumentGig,
   createPlayerInstrument,
+  fetchInstrumentsByPlayer,
 };
