@@ -2,10 +2,13 @@ $Primary: rgb(33, 36, 41);
 // $Primary: rgb(116, 157, 210);
 $Secondary: scale-color($Primary, $lightness: 70%);
 $Tertiary: scale-color($Primary, $lightness: 95%);
-$LightFont: scale-color($Primary, $lightness: 95%);
+$LightFont: scale-color($Primary, $lightness: 85%);
 $Dark: scale-color($Primary, $lightness: -40%);
 $SuperDarkFont: scale-color($Dark, $lightness: -50%);
+$DarkGrey: #2a2c31;
 $NavbarWidth: 17em;
+$FontStyle: 'Comfortaa';
+$DeleteBtn: rgb(229, 71, 71);
 
 :export {
   primaryColor: $Primary;

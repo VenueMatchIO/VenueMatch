@@ -18,8 +18,10 @@ function GigsPage() {
   return (
     <div>
       {showModal && <AddGigModal closeModal={closeModal} />}
-      <h1>Gigs</h1>
-      <button onClick={addGig}>Add Gig</button>
+      <div className='various-heading'>
+        <h1>Gigs</h1>
+        <button onClick={addGig}>Add Gig</button>
+      </div>
       <GigsDisplay gigs={gigs} />
     </div>
   );

@@ -77,7 +77,7 @@ function VenuesTable({venues}) {
   const venueTable = (
     <table>
       <thead>
-        <tr>
+        <tr className='table-header-row'>
           <th>Name</th>
           <th>Location</th>
           <th>Gigs</th>

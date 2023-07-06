@@ -10,8 +10,10 @@ function InstrumentsPage() {
 
   return (
     <div>
-      <h1>Instruments</h1>
-      <button onClick={() => setShowModal(true)}>Add Instrument</button>
+      <div className='various-heading'>
+        <h1>Instruments</h1>
+        <button onClick={() => setShowModal(true)}>Add Instrument</button>
+      </div>
       {showModal && <InstrumentModal closeModal={() => setShowModal(false)} />}
       <InstrumentsTable instruments={instruments} />
     </div>
