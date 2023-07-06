@@ -55,6 +55,14 @@ router.post('/instrument', instController.createInstrument, (req, res) => {
   return res.status(201).json(res.locals);
 });
 
+router.get(
+  '/instruments/:id',
+  instController.getInstrumentsByPlayer,
+  (req, res) => {
+    return res.status(200).json(res.locals);
+  }
+);
+
 router.get('/instruments', instController.getInstruments, (req, res) => {
   return res.status(200).json(res.locals);
 });
@@ -92,10 +100,10 @@ router.get(
   }
 );
 
-// router.get('/player/:id', playerController.getPlayers, (req, res) => {
-//   console.log('Hello from playerRoutes get');
-//   return res.status(200).json(res.locals);
-// });
+router.get('/players', playerController.getPlayers, (req, res) => {
+  console.log('Hello from playerRoutes get');
+  return res.status(200).json(res.locals);
+});
 
 router.patch('/player', playerController.updatePlayer, (req, res) => {
   console.log('Hello from playerRoutes update');
@@ -103,7 +111,7 @@ router.patch('/player', playerController.updatePlayer, (req, res) => {
 });
 
 router.delete('/player', playerController.deletePlayer, (req, res) => {
-  return res.status(200).json(res.locals);
+  return res.status(201).json(res.locals);
 });
 
 //Venue Routes

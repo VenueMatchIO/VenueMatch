@@ -298,6 +298,18 @@ Modal Styles
   border-color: $Primary;
 }
 
+.add-player-inst-select-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: start;
+}
+
+.add-player-inst-select {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.25em;
+}
 /*
 =============
 Gig Styles
@@ -353,17 +365,31 @@ Gig Styles
   border-color: $Tertiary;
 }
 
-.gig-table {
+/*
+=============
+Table Styles
+=============
+*/
+
+/* 
+
+Generic Table Properties
+________________________
+*/
+
+.data-table {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 1em;
+  min-width: 60em;
 }
 
-.gig-table > table {
+.data-table > table {
   font-size: 2em;
 }
 
-.gig-table > button {
+.data-table > button {
   font-size: 1.2em;
   margin-top: 0.5em;
   border-radius: 25px;
@@ -374,15 +400,23 @@ Gig Styles
   cursor: pointer;
 }
 
-.gig-table > button:hover {
+.data-table > button:hover {
   color: $Tertiary;
   background-color: $Primary;
 }
 
-.gig-table-fill-btn {
-  color: $Dark;
-  text-decoration: underline;
+td > p {
+  margin: 0;
+}
+
+.table-remove-btn {
+  background: none;
+  color: red;
+  border: none;
   cursor: pointer;
+}
+.table-remove-btn > * {
+  height: 1.5em;
 }
 
 table {
@@ -425,4 +459,21 @@ table {
 caption {
   font-weight: bold;
   margin-bottom: 10px;
+}
+
+/*
+
+Gig table properties
+____________________
+*/
+
+.gig-table-fill-btn {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.player-table-inst-array {
+  max-width: 9em;
 }

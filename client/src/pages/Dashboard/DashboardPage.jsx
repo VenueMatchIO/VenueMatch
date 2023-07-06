@@ -1,7 +1,7 @@
 import React from 'react';
 import {players, venues, instruments, gigs} from '../../../../server/dummyData';
 import ControlContainer from './components/ControlContainer';
-import InformationDisplay from '../Instruments/components/InformationDisplay';
+import InformationDisplay from './components/InformationDisplay';
 import DataContainer from './components/DataContainer';
 
 function DashboardPage() {
@@ -15,9 +15,9 @@ function DashboardPage() {
 
   return (
     <div className='main-container'>
-      <ControlContainer />
+      {/* <ControlContainer /> */}
       <InformationDisplay data={props} />
-      <DataContainer data={props} />
+      {/* <DataContainer data={props} /> */}
     </div>
   );
 }

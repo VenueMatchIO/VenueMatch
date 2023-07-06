@@ -7,6 +7,7 @@ function InformationDisplay(props) {
       <h3>Total Players: {props.data.players.length}</h3>
       <h3>Total Venues: {props.data.venues.length} </h3>
       <h3>Total Instruments: {props.data.instruments.length}</h3>
+      <h3>Total Gigs: {props.data.gigs.length}</h3>
     </div>
   );
 }

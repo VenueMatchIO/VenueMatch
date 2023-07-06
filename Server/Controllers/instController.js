@@ -102,4 +102,27 @@ instController.deleteInstrument = async (req, res, next) => {
   }
 };
 
+instController.getInstrumentsByPlayer = async (req, res, next) => {
+  const {id: playerId} = req.params;
+  if (!playerId) {
+    return next({
+      error: 'no playerId in req params',
+      status: 400,
+      message: {err: 'Error in getInstrumentByPlayer method of instController'},
+    });
+  }
+
+  try {
+    const response = await Instrument.getInstrumentByPlayer(playerId);
+    res.locals = response;
+    return next();
+  } catch (error) {
+    return next({
+      error: error,
+      status: 400,
+      message: {err: 'error writing grabbing player by instrument from DB'},
+    });
+  }
+};
+
 module.exports = instController;

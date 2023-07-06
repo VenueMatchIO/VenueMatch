@@ -47,6 +47,16 @@ class Instrument {
       return error;
     }
   }
+
+  static async getInstrumentByPlayer(playerId) {
+    try {
+      const response = await db.fetchInstrumentsByPlayer(playerId);
+      return response.rows;
+    } catch (error) {
+      console.error(error);
+      return error;
+    }
+  }
 }
 
 module.exports = Instrument;
