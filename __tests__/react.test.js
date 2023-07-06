@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent } from '@testing-library/react';
-import Data from './client/pages/Dashboard/components/Data'
+import Data from '../client/src/pages/Dashboard/components/Data.jsx'
 
 describe('Data', () => {
     it('renders correctly', () => {
