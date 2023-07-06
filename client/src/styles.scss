@@ -220,6 +220,7 @@ Modal Styles
   position: absolute;
   display: flex;
   flex-direction: column;
+  padding: 2em;
   z-index: 100;
   background: $Tertiary;
   border: 1px solid $Primary;
@@ -259,12 +260,11 @@ Modal Styles
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 1em;
   font-family: $FontStyle;
   margin-bottom: 0em;
 
   h1 {
-    margin: 0.5em;
+    margin: 0;
   }
 }
 
@@ -308,6 +308,14 @@ Modal Styles
   display: flex;
   flex-direction: column;
   width: 50%;
+}
+
+.fill-modal-form > select {
+  font-size: 1.25em;
+}
+
+.fill-modal-form > * {
+  margin: 1em 1em 1em 0;
 }
 
 .fill-modal-btn {
