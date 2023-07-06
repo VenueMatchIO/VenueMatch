@@ -7,7 +7,6 @@ import {fetchPlayers} from '../../../actions/actions';
 import axios from 'axios';
 
 function PlayersTable(props) {
-  const [showInstId, setShowInstId] = useState([]);
   const [playerInstruments, setPlayerInstruments] = useState({});
   const players = useSelector((state) => state.players);
   const dispatch = useDispatch();
@@ -25,7 +24,7 @@ function PlayersTable(props) {
       console.error(error);
     }
   }
-  console.log('playerInstruments', playerInstruments);
+
   async function handleInstrument(e, playerId, isShown) {
     if (isShown) {
       const newState = {...playerInstruments};

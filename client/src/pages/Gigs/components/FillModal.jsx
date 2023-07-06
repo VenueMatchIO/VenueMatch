@@ -23,11 +23,13 @@ function FillModal({closeModal, data, gigId}) {
     if (players.length === 0) getPlayerByInstrumentID();
   }, []);
 
-  const options = players.map((player) => (
-    <option key={uuid()} value={player.player_id}>
-      {player.name}
-    </option>
-  ));
+  const options = players
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map((player) => (
+      <option key={uuid()} value={player.player_id}>
+        {player.name}
+      </option>
+    ));
   const playerForm = (
     <form className='fill-modal-form' onSubmit={choosePlayer}>
       <select name='selection'>{options}</select>

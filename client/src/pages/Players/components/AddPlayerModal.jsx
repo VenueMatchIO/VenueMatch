@@ -1,18 +1,20 @@
 import axios from 'axios';
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {fetchPlayers} from '../../../actions/actions';
+import {v4 as uuid} from 'uuid';
 
 function AddPlayerModal({closeModal}) {
-  const [error, setError] = useState(false);
+  const [error, setError] = useState('');
   const [checkedIds, setCheckedIds] = useState([]);
 
   const players = useSelector((state) => state.players);
   const instruments = useSelector((state) => state.instruments);
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
 
   const options = instruments.map((instrument) => {
     return (
-      <div className='add-player-inst-select'>
+      <div key={uuid()} className='add-player-inst-select'>
         <label htmlFor={instrument.name}>{instrument.name}</label>
         <input
           onChange={handleChange}
@@ -36,16 +38,25 @@ function AddPlayerModal({closeModal}) {
     });
   }
 
+  function showError() {
+    setError('You need to fill in a name');
+    setTimeout(() => {
+      setError('');
+    }, 3000);
+  }
+
   async function addPlayer(e) {
+    e.preventDefault();
+    if (!e.target.name.value) return showError();
+
     const body = {
       name: e.target.name.value,
       instruments: checkedIds,
     };
     try {
-      const response = axios.post(`/api/player`, body);
-      console.log(response.data);
+      const response = await axios.post(`/api/player`, body);
       if (response.status === 201) {
-        dispatch();
+        dispatch(fetchPlayers());
         closeModal();
       }
     } catch (error) {
@@ -66,7 +77,7 @@ function AddPlayerModal({closeModal}) {
           <div className='add-player-inst-select-container'>{options}</div>
           <button>Add Player</button>
         </form>
-        {error && 'You need to fill in all the fields'}
+        {error && error}
       </div>
     </div>
   );

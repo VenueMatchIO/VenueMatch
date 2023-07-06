@@ -28,6 +28,10 @@ router.post('/gig', gigController.createGig, (req, res) => {
   return res.status(201).json(res.locals);
 });
 
+router.get('/gigs/:id', gigController.getGigsByVenue, (req, res) => {
+  return res.status(200).json(res.locals);
+});
+
 router.get('/gigs', gigController.getGigs, (req, res) => {
   return res.status(200).json(res.locals);
 });
@@ -128,7 +132,7 @@ router.patch('/venue', venueController.updateVenue, (req, res) => {
 });
 
 router.delete('/venue', venueController.deleteVenue, (req, res) => {
-  return res.status(200).json(res.locals);
+  return res.status(201).json(res.locals);
 });
 
 module.exports = router;

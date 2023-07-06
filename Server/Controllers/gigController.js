@@ -190,4 +190,27 @@ gigController.removeInstrument = async (req, res, next) => {
   }
 };
 
+gigController.getGigsByVenue = async (req, res, next) => {
+  const {id: venueId} = req.params;
+  if (!venueId) {
+    return next({
+      error: 'No venueId passed for getting the gigs',
+      status: 400,
+      message: {err: 'error in getGigsByVenue method in gigController'},
+    });
+  }
+
+  try {
+    const response = await Gig.getGigsByVenue(venueId);
+    res.locals = response;
+    return next();
+  } catch (error) {
+    return next({
+      error: error,
+      status: 400,
+      message: {err: 'Error in getGigsByVenue method of gigController'},
+    });
+  }
+};
+
 module.exports = gigController;

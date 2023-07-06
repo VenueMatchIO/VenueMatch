@@ -367,6 +367,27 @@ Gig Styles
 
 /*
 =============
+Venue Styles
+=============
+*/
+
+.venue-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.venue-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.venue-form > * {
+  margin-top: 0.5em;
+}
+
+/*
+=============
 Table Styles
 =============
 */

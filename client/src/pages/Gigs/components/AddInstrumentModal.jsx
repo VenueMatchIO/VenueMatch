@@ -24,7 +24,7 @@ function AddInstrumentModal({closeModal, gigId}) {
     };
     try {
       const response = await axios.post('/api/gig/instrument', body);
-      console.log(response);
+
       if (response.status === 201) closeModal();
     } catch (error) {
       console.error(error);
