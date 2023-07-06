@@ -7,7 +7,9 @@ Player Queries
 */
 
 const createPlayer = async (name) => {
-  return await db.query('INSERT INTO players (name) VALUES ($1)', [name]);
+  return await db.query('INSERT INTO players (name) VALUES ($1) RETURNING *', [
+    name,
+  ]);
 };
 
 const updatePlayer = async (id, name) => {
@@ -33,6 +35,24 @@ const getPlayerByInstrument = async (instrumentId) => {
   `;
 
   return await db.query(query, [instrumentId]);
+};
+
+const createPlayerInstrument = async (playerId, instruments) => {
+  try {
+    // Constructing the query
+    let values = '';
+    instruments.forEach((instrument, i) => {
+      values +=
+        i !== instruments.length - 1
+          ? `(${playerId}, ${instrument}),`
+          : `(${playerId}, ${instrument})`;
+    });
+
+    const query = `INSERT INTO players_instruments (player_id, instrument_id) VALUES ${values}`;
+    return await db.query(query);
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 /*
@@ -208,4 +228,5 @@ module.exports = {
   getPlayerByInstrument,
   fillGigPlayer,
   removeInstrumentGig,
+  createPlayerInstrument,
 };

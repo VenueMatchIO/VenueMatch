@@ -1,21 +1,23 @@
 const db = require('../database/db');
 
 class Player {
-  constructor(name, playerId, instruments) {
+  constructor(name, instruments) {
     this.name = name;
-    this.playerId = playerId;
     this.instruments = instruments;
   }
 
   async createPlayer() {
     let createPlayerData;
     try {
-      const response = await db.createPlayer(
-        this.name,
-        this.playerId,
-        this.instruments
-      );
+      const response = await db.createPlayer(this.name, this.instruments);
       createPlayerData = response.rows;
+
+      if (this.instruments.length > 0) {
+        const response = await Player.createPlayerInstrumentJoin(
+          createPlayerData[0].id,
+          this.instruments
+        );
+      }
       return createPlayerData;
     } catch (error) {
       console.error(error);
@@ -60,6 +62,16 @@ class Player {
   static async getPlayersByInstrument(id) {
     try {
       const response = await db.getPlayerByInstrument(id);
+      return response.rows;
+    } catch (error) {
+      console.error(error);
+      return error;
+    }
+  }
+
+  static async createPlayerInstrumentJoin(id, instruments) {
+    try {
+      const response = await db.createPlayerInstrument(id, instruments);
       return response.rows;
     } catch (error) {
       console.error(error);

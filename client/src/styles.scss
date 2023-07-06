@@ -299,6 +299,18 @@ Modal Styles
   border-color: $Primary;
 }
 
+.add-player-inst-select-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: start;
+}
+
+.add-player-inst-select {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.25em;
+}
 /*
 =============
 Gig Styles

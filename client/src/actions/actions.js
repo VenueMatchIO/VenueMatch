@@ -24,10 +24,9 @@ export const fetchData = () => {
 
       // temp test stuff
       const gigs = await axios.get('/api/gigs');
-      const players = {data: []};
+      const players = await axios.get('/api/players');
       const venues = await axios.get('/api/venues');
-      const instruments = {data: []};
-      console.log(gigs.data);
+      const instruments = await axios.get('/api/instruments');
       // update state with what the database returns
       dispatch({
         type: types.FETCH_DATA,
