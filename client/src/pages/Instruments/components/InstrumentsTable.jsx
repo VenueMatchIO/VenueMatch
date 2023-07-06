@@ -14,7 +14,7 @@ function InstrumentsTable({instruments}) {
     return (
       <tr key={uuid()}>
         <td>{instrument.name}</td>
-        <td>
+        <td className='row-ends-holding-trash'>
           <button className='table-remove-btn'>
             <FontAwesomeIcon icon={faTrashCan} />
           </button>

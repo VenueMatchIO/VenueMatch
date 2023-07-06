@@ -62,7 +62,7 @@ function VenuesTable({venues}) {
             <div className='player-table-inst-array'>{showGigs(venue.id)}</div>
           )}
         </td>
-        <td>
+        <td className='row-ends-holding-trash'>
           <button
             className='table-remove-btn'
             onClick={() => deleteVenue(venue.id)}

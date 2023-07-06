@@ -72,7 +72,7 @@ function PlayersTable(props) {
               </div>
             )}
           </td>
-          <td>
+          <td className='row-ends-holding-trash'>
             <button
               onClick={(e) => deletePlayer(e, player.id)}
               className='table-remove-btn'
