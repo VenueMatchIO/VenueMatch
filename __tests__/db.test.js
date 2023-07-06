@@ -19,3 +19,4 @@ describe('createPlayer', () => {
         expect(result.rows[result.rows.length - 1].name).toBe('Test Player');
     });
 });
+
