@@ -305,6 +305,28 @@ Gig Styles
 =============
 */
 
+.gig-display-container {
+  display: flex;
+  align-items: center;
+}
+
+.gig-delete-btn {
+  height: 3em;
+  border-radius: 25px;
+  color: white;
+  background: red;
+  cursor: pointer;
+}
+
+.add-gig-venue-select {
+  display: flex;
+  align-items: center;
+}
+
+.add-gig-select-box {
+  height: 1.5em;
+  margin-left: 0.25em;
+}
 .gig-btn {
   width: calc(85vw - $NavbarWidth);
   margin: 1em;
@@ -378,12 +400,13 @@ td {
 }
 
 td {
-  font-size: 0.75em;
+  font-size: 0.5em;
 }
 
 th {
   background-color: $Dark;
   color: white;
+  font-size: 0.75em;
 }
 
 tr:nth-child(even) {

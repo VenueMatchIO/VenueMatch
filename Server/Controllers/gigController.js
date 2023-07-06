@@ -108,7 +108,28 @@ gigController.updateGigPlayer = async (req, res, next) => {
 };
 
 gigController.deleteGig = async (req, res, next) => {
-  return next();
+  const {gigId} = req.body;
+  if (!gigId) {
+    return next({
+      error: 'no gigId given for the deletion',
+      status: 400,
+      message: {err: 'error in deleteGig method of gigController, no gigId'},
+    });
+  }
+  try {
+    const response = await Gig.deleteGig(gigId);
+    res.locals = response;
+    return next();
+  } catch (error) {
+    console.error(error);
+    return next({
+      error: error,
+      status: 400,
+      message: {
+        err: 'error in trying to delete from DB from deleteGig method of gigController',
+      },
+    });
+  }
 };
 
 gigController.addInstrument = async (req, res, next) => {

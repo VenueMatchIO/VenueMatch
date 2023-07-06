@@ -20,7 +20,9 @@ class Gig {
 
     const gigId = createGigData[0].id;
 
-    const response = await Gig.insertInstrument(this.instruments, gigId);
+    if (this.instruments.length !== 0) {
+      const response = await Gig.insertInstrument(this.instruments, gigId);
+    }
 
     return createGigData[0];
   }
@@ -60,9 +62,9 @@ class Gig {
     }
   }
 
-  async deleteGig() {
+  static async deleteGig(gigId) {
     try {
-      const response = await db.deleteGig(this.id);
+      const response = await db.deleteGig(gigId);
       return response.rows;
     } catch (error) {
       console.error(error);
