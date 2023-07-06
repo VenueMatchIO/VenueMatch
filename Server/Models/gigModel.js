@@ -92,9 +92,10 @@ class Gig {
     }
   }
 
-  static async insertInstrument(instrumentId, gigId) {
+  static async insertInstrument(instrumentIds, gigId) {
+    if (!Array.isArray(instrumentIds)) instrumentIds = [instrumentIds];
     try {
-      const response = await db.insertInstrumentGig([instrumentId], gigId);
+      const response = await db.insertInstrumentGig(instrumentIds, gigId);
       return response.rows;
     } catch (error) {
       console.error(error);

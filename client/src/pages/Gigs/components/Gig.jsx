@@ -1,7 +1,5 @@
 import axios from 'axios';
 import React, {useState} from 'react';
-
-import {v4 as uuid} from 'uuid';
 import GigTable from './GigTable';
 
 function Gig({data}) {
@@ -36,7 +34,7 @@ function Gig({data}) {
             {data.venue_name}
           </p>
           <p>
-            {new Date(data.date).toLocaleString('en-us', {
+            {new Date(`${data.date}T00:00`).toLocaleString('en-us', {
               month: 'long',
               day: 'numeric',
               year: 'numeric',
