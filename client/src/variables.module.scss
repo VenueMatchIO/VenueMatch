@@ -1,6 +1,7 @@
-$Primary: rgb(9, 103, 197);
+$Primary: rgb(33, 36, 41);
+// $Primary: rgb(116, 157, 210);
 $Secondary: scale-color($Primary, $lightness: 70%);
-$Tertiary: scale-color(rgb(174, 238, 238), $lightness: 85%);
+$Tertiary: scale-color($Primary, $lightness: 95%);
 $LightFont: scale-color($Primary, $lightness: 95%);
 $Dark: scale-color($Primary, $lightness: -40%);
 $SuperDarkFont: scale-color($Dark, $lightness: -50%);
