@@ -482,12 +482,17 @@ td > p {
   margin: 0;
 }
 
+.row-ends-holding-trash {
+  text-align: right;
+}
+
 .table-remove-btn {
   background: none;
   color: $DeleteBtn;
   border: none;
   cursor: pointer;
 }
+
 .table-remove-btn > * {
   height: 1.5em;
 }
@@ -514,6 +519,10 @@ th {
   background-color: $DarkGrey;
   color: white;
   font-size: 0.75em;
+}
+
+.row-ends-holding-trash {
+  margin: auto 0;
 }
 
 tr:nth-child(even) {
