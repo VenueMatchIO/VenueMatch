@@ -16,7 +16,7 @@ venueController.createVenue = async (req, res, next) => {
   const newVenue = new Venue(name, location);
   console.log('Creating a new venue...');
   try {
-    newVenue.createVenue();
+    await newVenue.createVenue();
     res.locals = newVenue;
     console.log('New venue created successfully', newVenue);
     return next();

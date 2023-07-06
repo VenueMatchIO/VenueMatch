@@ -1,15 +1,24 @@
 import axios from 'axios';
-import React from 'react';
+import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {fetchVenues} from '../../../actions/actions';
 
 function VenuesForm() {
+  const [error, setError] = useState('');
   const dispatch = useDispatch();
+
+  function showError() {
+    setError('Missing fields in venue form');
+    setTimeout(() => {
+      setError('');
+    }, 3000);
+  }
+
   async function createVenue(e) {
     e.preventDefault();
     const name = e.target.name.value;
     const location = e.target.location.value;
-
+    if (!name || !location) return showError();
     const body = {
       name,
       location,
@@ -33,6 +42,7 @@ function VenuesForm() {
         <input name='name' placeholder='Venue name' />
         <input name='location' placeholder='Location' />
         <button>Create</button>
+        {error && error}
       </form>
     </div>
   );
