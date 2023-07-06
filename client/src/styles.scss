@@ -255,3 +255,72 @@ Modal Styles
   font-family: Comfortaa;
   color: $SuperDarkFont;
 }
+
+/*
+===================
+Venue Page Styles
+===================
+*/
+
+.venue-header {
+  display: flex;
+  justify-content: center;
+}
+
+.venue-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.venue-creator {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 35em;
+  height: 20em;
+  background-color: $Tertiary;
+  border: 1pt solid $Primary;
+  border-radius: 15px;
+  margin: 2em;
+
+  input {
+    width: 20em;
+    height: 2em;
+    margin: 1em;
+    font-size: 14pt;
+  }
+
+  button {
+    width: 5em;
+    height: 3em;
+    // justify-content: flex-end;
+  }
+}
+
+.venue-create-btn-div {
+  margin: 1em;
+}
+
+.venue-page-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 45em;
+  height: 40em;
+  background-color: $Tertiary;
+  border: 1pt solid $Primary;
+  border-radius: 15px;
+
+  h2 {
+
+    color: black;
+  }
+}
+
+.venue-page-body-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
