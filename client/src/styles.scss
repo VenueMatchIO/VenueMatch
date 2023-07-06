@@ -1,0 +1,634 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Comfortaa:wght@300;400;500&display=swap');
+@import './variables.module.scss';
+
+/*
+============
+Main Styles
+============
+*/
+
+body {
+  margin: 0;
+  background-color: $Tertiary;
+  font-family: $FontStyle, 'Arial';
+  color: $Primary;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+.main {
+  padding: 4em;
+  margin: 0 auto;
+}
+
+/*
+==============
+Navbar Styles
+==============
+*/
+
+.navbar-container {
+  display: flex;
+  flex-direction: column;
+  background-color: transparentize($Dark, 0.2);
+  width: 17em;
+  align-items: center;
+  padding: 2em 1em 2em 1em;
+  box-sizing: border-box;
+  border-right: 1px solid $Primary;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+.navbar-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navbar-logo {
+  color: $Tertiary;
+  cursor: pointer;
+  user-select: none;
+}
+
+.navbar-greeting {
+  font-family: $FontStyle;
+  color: $Tertiary;
+  user-select: none;
+  margin: 30px;
+  margin-top: 50px;
+}
+
+.navbar-routes {
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar-routes > button {
+  margin: 0.8em;
+  cursor: pointer;
+  color: $SuperDarkFont;
+  font-size: 13pt;
+  background: transparentize($Tertiary, 0.2);
+  border: 1px solid $Primary;
+  border-radius: 7px;
+  width: 9em;
+  height: 3em;
+  font-family: $FontStyle;
+}
+
+.navbar-routes > .active {
+  color: $Tertiary;
+  background: $DarkGrey;
+}
+
+.navbar-routes > button:hover {
+  color: $Tertiary;
+  background: $DarkGrey;
+}
+
+/*
+=====================
+Main Container Styles
+====================
+*/
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/*
+========================
+Control Container Styles
+========================
+*/
+
+.control-container {
+  display: flex;
+  justify-content: center;
+}
+
+.control-btn-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.control-btn {
+  margin: 2em 5em 1em 5em;
+  padding: 1em;
+  width: 11em;
+  border-radius: 15px;
+  cursor: pointer;
+  font-family: $FontStyle;
+  // font-style: light;
+  font-size: 1.25em;
+  color: $Tertiary;
+  background: transparentize($Dark, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  user-select: none;
+}
+
+.control-btn:hover {
+  color: $Tertiary;
+  background: $DarkGrey;
+}
+
+/*
+==========================
+Information Display Styles
+==========================
+*/
+
+.information-display-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  font-family: $FontStyle, 'Trebuchet MS', 'Lucida Sans Unicode',
+    'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: $SuperDarkFont;
+  border: 2px solid;
+  border-color: $Primary;
+  border-radius: 3px;
+  padding: 0 5em 1em 5em;
+  width: calc(75vw - 25em);
+  margin: 5em 0 5em 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  background: transparentize($Tertiary, 0.2);
+}
+
+.information-display-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+/*
+======================
+Data Container Styles
+======================
+*/
+
+.data-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.data-button {
+  margin: 2em;
+  height: 3em;
+  font-size: 1.5em;
+  width: 50vw;
+  cursor: pointer;
+  background-color: $Primary;
+  color: white;
+  border: 2px solid white;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.data-button:hover {
+  background-color: $Secondary;
+  color: $Primary;
+  border-color: $Primary;
+}
+
+.data-btn-label {
+  margin-left: auto;
+}
+
+.data-btn-icon {
+  margin-left: auto;
+  margin-right: 1em;
+}
+/*
+=============
+Modal Styles
+=============
+*/
+
+.modal-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  background: $Tertiary;
+  border: 1px solid $Primary;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  color: $SuperDarkFont;
+  width: auto;
+
+  button {
+    width: 15em;
+    height: 2em;
+    border-radius: 10px;
+    font-size: 12pt;
+    background-color: $DarkGrey;
+    color: $LightFont;
+    margin-top: 0.5em;
+  }
+
+  p {
+    margin-top: 1em;
+    margin-bottom: 0.25em;
+    font-size: 16pt;
+  }
+
+  input {
+    height: 1.75em;
+  }
+}
+
+.inst-input-add-player {
+  width: 15em;
+  height: 1em;
+  margin-top: 0em;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1em;
+  font-family: $FontStyle;
+  margin-bottom: 0em;
+
+  h1 {
+    margin: 0.5em;
+  }
+}
+
+.modal-header > button {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  height: 2em;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: $FontStyle;
+  font-weight: bolder;
+  font-size: 1.5em;
+  color: $SuperDarkFont;
+}
+
+.modal-header > button:hover {
+  color: $DeleteBtn;
+}
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2em;
+}
+
+.modal-inputs {
+  margin: 0.5em;
+  display: flex;
+  align-items: center;
+}
+
+.modal-input {
+  margin: 0.5em;
+  font-family: $FontStyle;
+  color: $SuperDarkFont;
+}
+
+.fill-modal-form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.fill-modal-btn {
+  border-radius: 25px;
+  margin-top: 1em;
+  padding: 0.25em;
+  background-color: $Primary;
+  color: $Tertiary;
+  border-color: $Primary;
+  cursor: pointer;
+}
+
+.fill-modal-btn:hover {
+  color: $Primary;
+  background-color: $Tertiary;
+  border-color: $Primary;
+}
+
+.add-player-inst-select-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: start;
+  padding: 0.5em;
+}
+
+.add-player-inst-select {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.25em;
+}
+/*
+=============
+Gig Styles
+=============
+*/
+
+.gig-display-container {
+  display: flex;
+  align-items: center;
+}
+
+.gig-delete-btn {
+  height: 3em;
+  border-radius: 13px;
+  color: white;
+  background: $DeleteBtn;
+  cursor: pointer;
+}
+
+.add-gig-venue-select {
+  display: flex;
+  align-items: center;
+  margin: 1em 0 1em 0;
+  // border: 1px solid blue;
+}
+
+.add-gig-venue-select > p {
+  margin: 0;
+  margin-right: 1em;
+}
+
+.add-gig-select-box {
+  height: 2em;
+  margin-left: 0.25em;
+  font-size: 1em;
+}
+.gig-btn {
+  width: calc(85vw - $NavbarWidth);
+  margin: 1em;
+  cursor: pointer;
+  border-radius: 13px;
+  background-color: $Tertiary;
+  color: $SuperDarkFont;
+  border-color: $Primary;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+.gig-btn-contents {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.5em 0 0.5em;
+}
+
+.gig-btn-contents > * {
+  font-size: 1.2em;
+}
+
+.gig-btn:hover {
+  color: $Tertiary;
+  background-color: $Primary;
+  border-color: $Tertiary;
+}
+
+/*
+=============
+Venue Styles
+=============
+*/
+
+.venue-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.venue-form {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $Primary;
+  padding-inline: 2em;
+  padding-bottom: 1.5em;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+
+  * {
+    margin: 0.5em;
+  }
+
+  h2 {
+    margin-top: 1em;
+  }
+
+  input {
+    height: 1.75em;
+  }
+
+  button {
+    height: 2em;
+    background-color: $DarkGrey;
+    color: $LightFont;
+    border-radius: 7px;
+    font-size: 12pt;
+  }
+}
+
+.venue-creator {
+  margin-bottom: 20px;
+}
+
+/*
+=============
+Table Styles
+=============
+*/
+
+/* 
+
+Generic Table Properties
+________________________
+*/
+
+.data-table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1em;
+  min-width: 60em;
+}
+
+.data-table > table {
+  font-size: 2em;
+}
+
+.data-table > button {
+  font-size: 1.2em;
+  font-family: $FontStyle;
+  margin-top: 0.5em;
+  border-radius: 25px;
+  padding: 0 0.5em 0 0.5em;
+  width: 33%;
+  color: $SuperDarkFont;
+  background-color: $Tertiary;
+  cursor: pointer;
+}
+
+.data-table > button:hover {
+  color: $Tertiary;
+  background-color: $Primary;
+}
+
+td > p {
+  margin: 0;
+}
+
+.row-ends-holding-trash {
+  text-align: right;
+}
+
+.table-remove-btn {
+  background: none;
+  color: $DeleteBtn;
+  border: none;
+  cursor: pointer;
+}
+
+.table-remove-btn > * {
+  height: 1.5em;
+}
+
+table {
+  width: 75%;
+  border-collapse: collapse;
+  border: 2px solid $DarkGrey;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+td {
+  font-size: 0.5em;
+  font-style: $FontStyle;
+}
+
+th {
+  background-color: $DarkGrey;
+  color: white;
+  font-size: 0.75em;
+}
+
+.row-ends-holding-trash {
+  margin: auto 0;
+}
+
+tr:nth-child(even) {
+  background-color: white;
+}
+
+/* Optional hover effect */
+tr:hover {
+  background-color: #e6e6e6;
+}
+
+/* Optional additional styling */
+
+table {
+  font-family: $FontStyle, 'Arial';
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  border: 2px solid $DarkGrey;
+}
+​ table tr:first-child th:first-child,
+table tr:first-child td:first-child {
+  border-top-left-radius: 10px;
+}
+​ table tr:first-child th:last-child,
+table tr:first-child td:last-child {
+  border-top-right-radius: 10px;
+}
+​ table tr:last-child th:first-child,
+table tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+​ table tr:last-child th:last-child,
+table tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
+}
+​
+/* Clear unwanted rounded corners */
+table tr:first-child th:first-child,
+table tr:first-child td:first-child {
+  border-bottom-left-radius: 0;
+}
+​ table tr:first-child th:last-child,
+table tr:first-child td:last-child {
+  border-bottom-right-radius: 0;
+}
+​ table tr:last-child th:first-child,
+table tr:last-child td:first-child {
+  border-top-left-radius: 0;
+}
+​ table tr:last-child th:last-child,
+table tr:last-child td:last-child {
+  border-top-right-radius: 0;
+}
+
+caption {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/*
+
+Gig table properties
+____________________
+*/
+
+.gig-table-fill-btn {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.player-table-inst-array {
+  max-width: 9em;
+}
+
+.various-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+
+  h1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  button {
+    width: 15em;
+    height: 2em;
+    border-radius: 10px;
+    font-size: 12pt;
+    background-color: $DarkGrey;
+    color: $LightFont;
+  }
+}

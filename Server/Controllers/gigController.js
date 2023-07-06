@@ -1,128 +1,216 @@
-const Models = require('../Models/models');
-const Gig = Models.gig;
+const Gig = require('../Models/gigModel.js');
 
-const gigController = {
-  async createGig(req, res, next) {
-    try {
-      console.log('logging from createGig');
-      console.log('req body looks like: ', req.body);
-      const newGig = await Gig.create({
-        venue: req.body.venue,
-        // date: req.body.date
-      });
-      console.log('newGig: ', newGig);
-      res.locals.gig = newGig;
-      return next();
-    } catch (err) {
-      console.log('logging error from gigController');
-      return next({
-        log: 'An error occurred wuthin the createGig controller found in gigController.js.',
-        status: 400,
-        message: { err: 'An error occurred when trying to create gig.' },
-      });
-    }
-  },
+const gigController = {};
 
-  async getGig(req, res, next) {
-    try {
-      console.log('logging from getGig');
-      console.log('req params looks like: ', req.params);
-      const foundGig = await Gig.findOne({
-        venue: req.params.venue,
-        date: req.params.date,
-      });
+gigController.createGig = async (req, res, next) => {
+  const {name, venue, date, instruments} = req.body;
+  if (!name || !venue || !date || !instruments) {
+    return next({
+      log: 'Missing field for the create gig method',
+      status: 400,
+      message: {err: 'Error in the createGig method of the gigController'},
+    });
+  }
+  console.log('Creating a new gig...');
+  const newGig = new Gig(name, venue, date, instruments);
+  try {
+    const gigID = await newGig.createGig();
+    res.locals = gigID;
+    console.log('Created new gig ', newGig);
+    return next();
+  } catch (error) {
+    return next({
+      log: error,
+      status: 400,
+      message: {
+        err: 'Error in the createGig method of the gigController',
+      },
+    });
+  }
+};
 
-      res.locals.gig = foundGig;
-      return next();
-    } catch {
-      return next({
-        log: 'An error occurred wuthin the getGig controller found in gigController.js.',
-        status: 400,
-        message: { err: 'An error occurred when trying to find gig.' },
-      });
-    }
-  },
+gigController.getGig = async (req, res, next) => {
+  const {id: gigId} = req.params;
+  if (!gigId) {
+    return next({
+      log: 'No gig ID provided',
+      status: 400,
+      message: {
+        err: 'Error in getGig method of gigController on gigId',
+      },
+    });
+  }
+  try {
+    const gigs = await Gig.getGigDetails(gigId);
+    res.locals = gigs;
+    return next();
+  } catch (error) {
+    return next({
+      log: error,
+      status: 400,
+      message: {
+        err: 'Error in the getGig method of gigController',
+      },
+    });
+  }
+};
 
-  async updateGig(req, res, next) {
-    try {
-      const updatedGig = await Gig.findOneAndUpdate(
-        { venue: req.params.venue },
-        { venue: req.body.name },
-        { date: req.params.date },
-        { date: req.body.name },
-        { new: true }
-      );
+gigController.getGigs = async (req, res, next) => {
+  try {
+    const gigs = await Gig.joinGigVenue();
+    res.locals = gigs;
+    return next();
+  } catch (error) {
+    return next({
+      log: error,
+      status: 400,
+      message: {
+        err: 'Error in the getGig method of gigController',
+      },
+    });
+  }
+};
 
-      res.locals.gig = updatedGig;
-      next();
-    } catch {
-      return next({
-        log: 'An error occurred within the updateGig controller found in gigController.js.',
-        status: 400,
-        message: { err: 'An error occurred when trying to update gig.' },
-      });
-    }
-  },
+gigController.updateGig = async (req, res, next) => {
+  try {
+  } catch (error) {}
 
-  //   async updateVenue(req, res, next) {
+  return next();
+};
 
-  //     try{
+gigController.updateGigPlayer = async (req, res, next) => {
+  const {gigId, playerId, instrumentId} = req.body;
+  console.log(gigId, playerId, instrumentId);
+  if (!gigId || !playerId || !instrumentId) {
+    return next({
+      error: 'missing field for updateGig',
+      status: 400,
+      message: {
+        err: 'Missing gigId or playerId in reqbody of updateGig method on gigController',
+      },
+    });
+  }
 
-  //         const updatedVenue = await Gig.findOneAndUpdate(
-  //             { venue: req.params.venue },
-  //             { venue: req.body.name },
-  //             { new: true }
-  //         )
+  try {
+    const response = await Gig.fillGigPlayer(gigId, playerId, instrumentId);
+    res.locas = response;
+    return next();
+  } catch (error) {
+    console.error(error);
+    return next({
+      error: error,
+      status: 400,
+      message: {
+        err: 'Error in the updateGigPlayer method in the gigController',
+      },
+    });
+  }
+};
 
-  //     } catch {
+gigController.deleteGig = async (req, res, next) => {
+  const {gigId} = req.body;
+  if (!gigId) {
+    return next({
+      error: 'no gigId given for the deletion',
+      status: 400,
+      message: {err: 'error in deleteGig method of gigController, no gigId'},
+    });
+  }
+  try {
+    const response = await Gig.deleteGig(gigId);
+    res.locals = response;
+    return next();
+  } catch (error) {
+    console.error(error);
+    return next({
+      error: error,
+      status: 400,
+      message: {
+        err: 'error in trying to delete from DB from deleteGig method of gigController',
+      },
+    });
+  }
+};
 
-  //         return next({
-  //             log: 'An error occurred wuthin the updateVenue controller found in gigController.js.',
-  //             status: 400,
-  //             message: { err: 'An error occurred when trying to update venue.' }
-  //         });
+gigController.addInstrument = async (req, res, next) => {
+  const {instrumentId, gigId} = req.body;
 
-  //     }
-  //   },
+  if (!instrumentId || !gigId) {
+    return next({
+      error: 'error in the addInstrument method of the gigController',
+      status: 400,
+      message: {
+        err: 'error in the addInstrument method of the gigController, missing fields ',
+      },
+    });
+  }
 
-  //   async updateDate(req, res, next) {
+  try {
+    const response = await Gig.insertInstrument(instrumentId, gigId);
+    res.locals = response;
+    return next();
+  } catch (error) {
+    console.error(error);
+    return next({
+      error: error,
+      status: 400,
+      message: {
+        err: 'error in the addInstrument method posting data to DB of gigController',
+      },
+    });
+  }
+};
 
-  //     try{
+gigController.removeInstrument = async (req, res, next) => {
+  console.log(req.body);
+  const {joinId} = req.body;
+  if (!joinId) {
+    return next({
+      error: 'error in the removeInstrument method of the gigController',
+      status: 400,
+      message: {
+        err: 'error in the removeInstrument method of the gigController, missing fields ',
+      },
+    });
+  }
 
-  //         const updatedDate = await Gig.findOneAndUpdate(
-  //             { date: req.params.venue },
-  //             { date: req.body.name },
-  //             { new: true }
-  //         )
+  try {
+    const response = await Gig.removeInstrument(joinId);
+    res.locals = response;
+    return next();
+  } catch (error) {
+    console.error(error);
+    return next({
+      error: error,
+      status: 400,
+      message: {
+        err: 'error in the removeInstrument method deleting data from DB of gigController',
+      },
+    });
+  }
+};
 
-  //     } catch {
+gigController.getGigsByVenue = async (req, res, next) => {
+  const {id: venueId} = req.params;
+  if (!venueId) {
+    return next({
+      error: 'No venueId passed for getting the gigs',
+      status: 400,
+      message: {err: 'error in getGigsByVenue method in gigController'},
+    });
+  }
 
-  //         return next({
-  //             log: 'An error occurred wuthin the updateDate controller found in gigController.js.',
-  //             status: 400,
-  //             message: { err: 'An error occurred when trying to update date.' }
-  //         });
-
-  //     }
-  //   },
-
-  async deleteGig(req, res, next) {
-    try {
-      const deletedStudent = Gig.findOneAndDelete(
-        { venue: req.params.venue },
-        { date: req.params.date }
-      );
-
-      res.locals.gig = deletedStudent;
-      next();
-    } catch {
-      return next({
-        log: 'An error occurred within the deleteGig controller found in gigController.js.',
-        status: 400,
-        message: { err: 'An error occurred when trying to delete gig.' },
-      });
-    }
-  },
+  try {
+    const response = await Gig.getGigsByVenue(venueId);
+    res.locals = response;
+    return next();
+  } catch (error) {
+    return next({
+      error: error,
+      status: 400,
+      message: {err: 'Error in getGigsByVenue method of gigController'},
+    });
+  }
 };
 
 module.exports = gigController;

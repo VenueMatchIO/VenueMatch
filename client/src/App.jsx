@@ -1,11 +1,29 @@
-import {useState, useEffect} from 'react';
 import React from 'react';
-import Header from './components/header';
+import Navbar from './components/Navbar.jsx';
+import {Routes, Route} from 'react-router';
+import VenuesPage from '../src/pages/Venues/VenuesPage.jsx';
+import DashboardPage from './pages/Dashboard/DashboardPage.jsx';
+import GigsPage from './pages/Gigs/GigsPage.jsx';
+import PlayersPage from './pages/Players/PlayersPage.jsx';
+import InstrumentsPage from './pages/Instruments/InstrumentsPage.jsx';
 
-import './App.scss';
+import styles from './styles.scss';
 
 const App = () => {
-  return <Header />;
+  return (
+    <div className='app'>
+      <Navbar />
+      <div className='main'>
+        <Routes>
+          <Route path='/' element={<DashboardPage className='main' />} />
+          <Route path='/venues' element={<VenuesPage />} />
+          <Route path='/gigs' element={<GigsPage />} />
+          <Route path='/players' element={<PlayersPage />} />
+          <Route path='/instruments' element={<InstrumentsPage />} />
+        </Routes>
+      </div>
+    </div>
+  );
 };
 
 export default App;
