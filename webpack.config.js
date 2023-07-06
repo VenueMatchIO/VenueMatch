@@ -57,13 +57,14 @@ module.exports = {
     host: 'localhost',
     port: 8080,
     hot: true,
+    historyApiFallback: true,
     headers: {'Access-Control-Allow-Origin': '*'},
     static: {
       directory: path.resolve(__dirname, 'dist'),
       publicPath: '/dist',
     },
     proxy: {
-      '/api': {
+      '/api/**': {
         target: 'http://localhost:3000',
         secure: false,
       },

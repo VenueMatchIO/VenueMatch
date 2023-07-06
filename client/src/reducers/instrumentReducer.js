@@ -1,6 +1,6 @@
 import * as types from '../constants/actionTypes';
 
-export function instrumentsReducer(state = [], action) {
+export default function instrumentsReducer(state = [], action) {
   switch (action.type) {
     case types.ADD_INSTRUMENT:
       return [...state, action.payload];

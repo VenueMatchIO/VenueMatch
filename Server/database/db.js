@@ -25,6 +25,16 @@ const fetchPlayers = async () => {
   return await db.query('SELECT * FROM players');
 };
 
+const getPlayerByInstrument = async (instrumentId) => {
+  const query = `
+  SELECT p.name, p.id as player_id FROM players p
+  JOIN players_instruments pi ON pi.player_id = p.id
+  JOIN instruments i ON $1 = pi.instrument_id AND i.id = $1
+  `;
+
+  return await db.query(query, [instrumentId]);
+};
+
 /*
 =================
 Instrument Queries
@@ -46,17 +56,17 @@ const deleteInstrument = async (id) => {
 };
 
 const fetchInstruments = async () => {
-  return await db.query('SELECT * FROM intruments');
+  return await db.query('SELECT * FROM instruments');
 };
 /*
 =================
 Gig Queries
 =================
 */
-const createGig = async (name, date, venue_id) => {
+const createGig = async (name, date, venueId) => {
   return await db.query(
     'INSERT INTO gigs (name, date, venue_id) VALUES ($1, $2, $3) RETURNING *',
-    [name, date, venue_id]
+    [name, date, venueId]
   );
 };
 
@@ -94,6 +104,58 @@ const insertInstrumentGig = async (instruments, gigId) => {
 
   query.text += placeholders.join(',');
   return await db.query(query);
+};
+
+const fillGigPlayer = async (gigId, playerId, instrumentId) => {
+  const query = `
+        UPDATE instruments_players_gigs
+        SET player_id = $1
+        WHERE instrument_id = $2
+            AND gig_id = $3
+            AND player_id IS NULL
+            AND ctid IN (
+                SELECT ctid
+                FROM instruments_players_gigs
+                WHERE instrument_id = $2
+                  AND gig_id = $3
+                  AND player_id IS NULL
+                LIMIT 1
+              )
+        RETURNING *;
+    `;
+  try {
+    return await db.query(query, [playerId, instrumentId, gigId]);
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};
+
+const getGigVenueJoinData = async () => {
+  const query = `
+        SELECT g.name, g.date, g.id, v.name as venue_name, v.location FROM gigs g
+        INNER JOIN venues v
+        ON v.id = g.venue_id
+    `;
+  return await db.query(query);
+};
+
+const getGigPlayerInstrument = async (gigId) => {
+  const query = `
+    SELECT i.name as instrument, i.id as instrument_id, g.name, p.name as player, ipg.join_id 
+    FROM gigs g
+    INNER JOIN instruments_players_gigs ipg ON ipg.gig_id = g.id
+    INNER JOIN instruments i ON i.id = ipg.instrument_id
+    LEFT JOIN players p ON p.id = ipg.player_id
+    WHERE g.id = $1
+    `;
+  return await db.query(query, [gigId]);
+};
+
+const removeInstrumentGig = async (joinId) => {
+  const query = `DELETE FROM instruments_players_gigs WHERE join_id = $1`;
+
+  return await db.query(query, [joinId]);
 };
 /*
 =================
@@ -138,4 +200,9 @@ module.exports = {
   deleteVenue,
   fetchVenues,
   insertInstrumentGig,
+  getGigVenueJoinData,
+  getGigPlayerInstrument,
+  getPlayerByInstrument,
+  fillGigPlayer,
+  removeInstrumentGig,
 };

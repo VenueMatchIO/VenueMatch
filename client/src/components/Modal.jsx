@@ -1,12 +1,9 @@
 import React from 'react';
 
-function Modal({data, closeModal}) {
-  let {title} = data;
-  title = title.charAt(0).toUpperCase() + title.slice(1);
+function Modal({closeModal}) {
   return (
     <div className='modal-container'>
       <div className='modal-header'>
-        <h1>{title}</h1>
         <button onClick={closeModal}>X</button>
       </div>
       <div className='modal-inputs'>

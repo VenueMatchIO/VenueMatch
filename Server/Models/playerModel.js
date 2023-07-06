@@ -10,7 +10,11 @@ class Player {
   async createPlayer() {
     let createPlayerData;
     try {
-      const response = await db.createPlayer(this.name, this.playerId, this.instruments);
+      const response = await db.createPlayer(
+        this.name,
+        this.playerId,
+        this.instruments
+      );
       createPlayerData = response.rows;
       return createPlayerData;
     } catch (error) {
@@ -31,7 +35,11 @@ class Player {
 
   async updatePlayer(id, name, instruments) {
     try {
-      const response = await db.updatePlayer(this.playerId, this.name, this.instruments);
+      const response = await db.updatePlayer(
+        this.playerId,
+        this.name,
+        this.instruments
+      );
       return response.rows;
     } catch (error) {
       console.error(error);
@@ -48,6 +56,16 @@ class Player {
       return error;
     }
   }
-};
+
+  static async getPlayersByInstrument(id) {
+    try {
+      const response = await db.getPlayerByInstrument(id);
+      return response.rows;
+    } catch (error) {
+      console.error(error);
+      return error;
+    }
+  }
+}
 
 module.exports = Player;

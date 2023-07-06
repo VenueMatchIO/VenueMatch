@@ -1,6 +1,6 @@
 import * as types from '../constants/actionTypes';
 
-export function venueReducer(state = [], action) {
+export default function venueReducer(state = [], action) {
   switch (action.type) {
     case types.ADD_VENUE:
       return [...state, action.payload];
