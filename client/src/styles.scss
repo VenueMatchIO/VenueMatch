@@ -640,3 +640,15 @@ ____________________
     color: $LightFont;
   }
 }
+
+.inst-form-modal {
+  display: flex;
+  flex-direction: column;
+
+  input {
+    margin-top: 1em;
+  }
+  button {
+    margin-top: 1em;
+  }
+}

@@ -36,7 +36,7 @@ function InstrumentModal({closeModal}) {
         <button onClick={closeModal}>X</button>
       </div>
       <div className='modal-inputs'>
-        <form onSubmit={addInstrument}>
+        <form className='inst-form-modal' onSubmit={addInstrument}>
           <input placeholder='Instrument name' name='name' />
           <button>Add Instrument</button>
         </form>
