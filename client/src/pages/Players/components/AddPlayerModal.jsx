@@ -8,11 +8,14 @@ function AddPlayerModal({closeModal}) {
   const [error, setError] = useState('');
   const [checkedIds, setCheckedIds] = useState([]);
 
+  // let checkedIds = [];
+
   const players = useSelector((state) => state.players);
   const instruments = useSelector((state) => state.instruments);
   const dispatch = useDispatch();
 
   const options = instruments.map((instrument) => {
+    const isChecked = checkedIds.includes(instrument.id.toString());
     return (
       <div key={uuid()} className='add-player-inst-select'>
         <label htmlFor={instrument.name}>{instrument.name}</label>
@@ -21,6 +24,7 @@ function AddPlayerModal({closeModal}) {
           type='checkbox'
           value={instrument.id}
           id={instrument.name}
+          checked={isChecked}
         />
       </div>
     );
@@ -28,7 +32,6 @@ function AddPlayerModal({closeModal}) {
 
   function handleChange(e) {
     const {value, checked} = e.target;
-
     setCheckedIds((prev) => {
       if (checked) {
         return [...prev, value];

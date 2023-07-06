@@ -9,7 +9,7 @@ class Instrument {
   async createInstrument() {
     let createInstrumentData;
     try {
-      const response = await db.createInstrument(this.name, this.instrumentId);
+      const response = await db.createInstrument(this.name);
       createInstrumentData = response.rows;
       return createInstrumentData;
     } catch (error) {

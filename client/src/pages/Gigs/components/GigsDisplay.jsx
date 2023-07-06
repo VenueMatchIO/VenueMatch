@@ -25,7 +25,7 @@ function GigsDisplay({gigs}) {
       }
     }
   }
-
+  console.log(gigs.sort((a, b) => a.date - b.date));
   const gigComponents = gigs.map((gig) => {
     return (
       <div className='gig-display-container' key={uuid()}>
