@@ -42,7 +42,6 @@ function GigTable({gigDetails, gigId, reload}) {
     };
     try {
       const response = await axios.delete('/api/gig/instrument', config);
-      console.log(response);
       if (response.status === 201) reload();
     } catch (error) {
       console.error(error);

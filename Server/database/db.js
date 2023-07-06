@@ -195,14 +195,23 @@ const removeInstrumentGig = async (joinId) => {
 
   return await db.query(query, [joinId]);
 };
+
+const getGigsByVenue = async (venueId) => {
+  const query = `SELECT g.* FROM gigs g WHERE g.venue_id = $1`;
+
+  return await db.query(query, [venueId]);
+};
 /*
 =================
 Venue Queries
 =================
 */
 
-const createVenue = async (name) => {
-  return await db.query('INSERT INTO venues (name) VALUES ($1)', [name]);
+const createVenue = async (name, location) => {
+  return await db.query('INSERT INTO venues (name, location) VALUES ($1, $2)', [
+    name,
+    location,
+  ]);
 };
 
 const updateVenue = async (id, name) => {
@@ -213,7 +222,22 @@ const updateVenue = async (id, name) => {
 };
 
 const deleteVenue = async (id) => {
-  return await db.query('DELETE FROM venues WHERE id = $1', [id]);
+  await db.query(
+    `  DELETE FROM instruments_players_gigs
+  WHERE gig_id IN (SELECT id FROM gigs WHERE venue_id = $1);`,
+    [id]
+  );
+
+  await db.query(
+    `DELETE FROM gigs WHERE venue_id = $1;
+  `,
+    [id]
+  );
+  return await db.query(
+    `DELETE FROM venues WHERE id = $1;
+  `,
+    [id]
+  );
 };
 
 const fetchVenues = async () => {
@@ -245,4 +269,5 @@ module.exports = {
   removeInstrumentGig,
   createPlayerInstrument,
   fetchInstrumentsByPlayer,
+  getGigsByVenue,
 };

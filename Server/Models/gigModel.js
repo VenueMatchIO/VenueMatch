@@ -111,6 +111,16 @@ class Gig {
       return error;
     }
   }
+
+  static async getGigsByVenue(venueId) {
+    try {
+      const response = await db.getGigsByVenue(venueId);
+      return response.rows;
+    } catch (error) {
+      console.error(error);
+      return error;
+    }
+  }
 }
 
 module.exports = Gig;
