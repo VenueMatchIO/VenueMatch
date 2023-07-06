@@ -31,19 +31,9 @@ venueController.createVenue = async (req, res, next) => {
   }
 };
 
-venueController.getVenue = async (req, res, next) => {
-  const {venue_id: venueId} = req.query;
-  if (!venueId) {
-    return next({
-      log: 'No venue Id given',
-      status: 400,
-      message: {
-        err: 'Error in the getVenue method of venueController on venue Id',
-      },
-    });
-  }
+venueController.getVenues = async (req, res, next) => {
   try {
-    const venues = await Venue.getVenue(venueId);
+    const venues = await Venue.getVenues();
     res.locals = venues;
     return next();
   } catch (error) {

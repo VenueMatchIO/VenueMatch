@@ -25,7 +25,7 @@ export const fetchData = () => {
       // temp test stuff
       const gigs = await axios.get('/api/gigs');
       const players = {data: []};
-      const venues = {data: []};
+      const venues = await axios.get('/api/venues');
       const instruments = {data: []};
       console.log(gigs.data);
       // update state with what the database returns

@@ -45,7 +45,7 @@ router.patch('/gig', gigController.updateGig, (req, res) => {
 });
 
 router.delete('/gig', gigController.deleteGig, (req, res) => {
-  return res.status(200).json(res.locals);
+  return res.status(201).json(res.locals);
 });
 
 //Instrument routes
@@ -107,7 +107,7 @@ router.delete('/player', playerController.deletePlayer, (req, res) => {
 });
 
 //Venue Routes
-router.get('/venue', venueController.getVenue, (req, res) => {
+router.get('/venues', venueController.getVenues, (req, res) => {
   return res.status(200).json(res.locals);
 });
 

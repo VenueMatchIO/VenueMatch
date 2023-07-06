@@ -78,6 +78,9 @@ const updateGig = async (gigId, name, date, venueId) => {
 };
 
 const deleteGig = async (id) => {
+  await db.query('DELETE FROM instruments_players_gigs WHERE gig_id = $1', [
+    id,
+  ]);
   return await db.query('DELETE FROM gigs WHERE id = $1', [id]);
 };
 
