@@ -32,10 +32,10 @@ CREATE TABLE players_instruments (
 );
 
 CREATE TABLE instruments_players_gigs (
+    join_id SERIAL PRIMARY KEY,
     instrument_id INT,
     gig_id INT,
     player_id INT, -- null ok
-    PRIMARY KEY (instrument_id, gig_id),
     FOREIGN KEY (instrument_id) REFERENCES instruments(id),
     FOREIGN KEY (player_id)  REFERENCES players(id),
     FOREIGN KEY (gig_id) REFERENCES gigs(id)

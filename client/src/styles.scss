@@ -236,6 +236,7 @@ Modal Styles
   border-radius: 4px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
   color: $SuperDarkFont;
+  width: 25em;
 }
 
 .modal-header {
@@ -263,12 +264,37 @@ Modal Styles
 
 .modal-inputs {
   margin: 0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .modal-inputs > input {
   margin: 0.5em;
   font-family: Comfortaa;
   color: $SuperDarkFont;
+}
+
+.fill-modal-form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.fill-modal-btn {
+  border-radius: 25px;
+  margin-top: 1em;
+  padding: 0.25em;
+  background-color: $Primary;
+  color: $Tertiary;
+  border-color: $Primary;
+  cursor: pointer;
+}
+
+.fill-modal-btn:hover {
+  color: $Primary;
+  background-color: $Tertiary;
+  border-color: $Primary;
 }
 
 /*
@@ -302,4 +328,77 @@ Gig Styles
   color: $Tertiary;
   background-color: $Primary;
   border-color: $Tertiary;
+}
+
+.gig-table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gig-table > table {
+  font-size: 2em;
+}
+
+.gig-table > button {
+  font-size: 1.2em;
+  margin-top: 0.5em;
+  border-radius: 25px;
+  padding: 0 0.5em 0 0.5em;
+  width: 33%;
+  color: $SuperDarkFont;
+  background-color: $Tertiary;
+  cursor: pointer;
+}
+
+.gig-table > button:hover {
+  color: $Tertiary;
+  background-color: $Primary;
+}
+
+.gig-table-fill-btn {
+  color: $Dark;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+table {
+  width: 75%;
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+td {
+  font-size: 0.75em;
+}
+
+th {
+  background-color: $Dark;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: white;
+}
+
+/* Optional hover effect */
+tr:hover {
+  background-color: #e6e6e6;
+}
+
+/* Optional additional styling */
+table {
+  font-family: Arial, sans-serif;
+}
+
+caption {
+  font-weight: bold;
+  margin-bottom: 10px;
 }

@@ -63,4 +63,29 @@ playerController.deletePlayer = async (req, res, next) => {
   return next();
 };
 
+playerController.getPlayerByInstrument = async (req, res, next) => {
+  const {id: instrumentId} = req.params;
+  if (!instrumentId) {
+    return next({
+      err: 'error in the getPlayerDetails controller, no ID',
+      status: 400,
+      message: {
+        err: 'Error in the getPlayerDetails method in the playerController',
+      },
+    });
+  }
+  try {
+    const response = await Player.getPlayersByInstrument(instrumentId);
+    res.locals = response;
+    return next();
+  } catch (error) {
+    console.error(error);
+    return next({
+      error: error,
+      status: 400,
+      message: {err: 'Error in trying to get player details from DB'},
+    });
+  }
+};
+
 module.exports = playerController;

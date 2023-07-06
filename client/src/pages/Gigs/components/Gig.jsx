@@ -2,28 +2,26 @@ import axios from 'axios';
 import React, {useState} from 'react';
 
 import {v4 as uuid} from 'uuid';
+import GigTable from './GigTable';
 
 function Gig({data}) {
   const [showInfo, setShowInfo] = useState(false);
-  const [gigDetails, setGigDetails] = useState({});
+  const [gigDetails, setGigDetails] = useState([]);
 
-  function handleClick() {
-    async function getGigDetails() {
-      const response = await axios.get(`/api/gig/${data.id}`);
-
-      console.log(response.data);
-    }
-
-    getGigDetails();
-
-    setShowInfo(!showInfo);
+  async function getGigDetails() {
+    const response = await axios.get(`/api/gig/${data.id}`);
+    return response.data;
   }
 
-  // const tableRows = props.data.map((item, index) => {
-  //   <tr key={uuid()}>
-  //     <td></td>
-  //   </tr>;
-  // });
+  async function reload() {
+    setGigDetails(await getGigDetails());
+  }
+
+  async function handleClick() {
+    if (!showInfo && gigDetails.length == 0)
+      setGigDetails(await getGigDetails());
+    setShowInfo(!showInfo);
+  }
 
   return (
     <div>
@@ -46,7 +44,9 @@ function Gig({data}) {
           </p>
         </div>
       </button>
-      {showInfo && false}
+      {showInfo && (
+        <GigTable gigDetails={gigDetails} reload={reload} gigId={data.id} />
+      )}
     </div>
   );
 }

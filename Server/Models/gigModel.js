@@ -20,12 +20,7 @@ class Gig {
 
     const gigId = createGigData[0].id;
 
-    try {
-      const response = await db.insertInstrumentGig(this.instruments, gigId);
-    } catch (error) {
-      console.error(error);
-      return error;
-    }
+    const response = await Gig.insertInstrument(this.instruments, gigId);
 
     return createGigData[0];
   }
@@ -48,6 +43,16 @@ class Gig {
         this.date,
         this.venueId
       );
+      return response.rows;
+    } catch (error) {
+      console.error(error);
+      return error;
+    }
+  }
+
+  static async fillGigPlayer(gigId, playerId, instrumentId) {
+    try {
+      const response = await db.fillGigPlayer(gigId, playerId, instrumentId);
       return response.rows;
     } catch (error) {
       console.error(error);
@@ -78,6 +83,26 @@ class Gig {
   static async getGigDetails(id) {
     try {
       const response = await db.getGigPlayerInstrument(id);
+      return response.rows;
+    } catch (error) {
+      console.error(error);
+      return error;
+    }
+  }
+
+  static async insertInstrument(instrumentId, gigId) {
+    try {
+      const response = await db.insertInstrumentGig([instrumentId], gigId);
+      return response.rows;
+    } catch (error) {
+      console.error(error);
+      return error;
+    }
+  }
+
+  static async removeInstrument(joinId) {
+    try {
+      const response = await db.removeInstrumentGig(joinId);
       return response.rows;
     } catch (error) {
       console.error(error);

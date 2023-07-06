@@ -18,7 +18,7 @@ class Instrument {
     }
   }
 
-  async getInstruments() {
+  static async getInstruments() {
     try {
       const response = await db.fetchInstruments();
       return response.rows;

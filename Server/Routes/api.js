@@ -6,6 +6,23 @@ const venueController = require('../controllers/venueController');
 const router = express.Router();
 
 //Gig Routes
+
+router.post(
+  '/gig/instrument',
+  gigController.addInstrument,
+  (req, res, next) => {
+    return res.status(201).json(res.locals);
+  }
+);
+
+router.delete(
+  '/gig/instrument',
+  gigController.removeInstrument,
+  (req, res, next) => {
+    return res.status(201).json(res.locals);
+  }
+);
+
 router.post('/gig', gigController.createGig, (req, res) => {
   console.log('Hello from gigRoutes post');
   return res.status(201).json(res.locals);
@@ -19,6 +36,9 @@ router.get('/gig/:id', gigController.getGig, (req, res) => {
   console.log('Hello from gigRoutes get');
   return res.status(200).json(res.locals);
 });
+router.patch('/gig/player', gigController.updateGigPlayer, (req, res) => {
+  return res.status(200).json(res.locals);
+});
 
 router.patch('/gig', gigController.updateGig, (req, res) => {
   return res.status(200).json(res.locals);
@@ -29,9 +49,14 @@ router.delete('/gig', gigController.deleteGig, (req, res) => {
 });
 
 //Instrument routes
+
 router.post('/instrument', instController.createInstrument, (req, res) => {
   console.log('Hello from instRoutes post');
   return res.status(201).json(res.locals);
+});
+
+router.get('/instruments', instController.getInstruments, (req, res) => {
+  return res.status(200).json(res.locals);
 });
 
 router.get('/instrument', instController.getInstrument, (req, res) => {
@@ -58,10 +83,19 @@ router.get('/', playerController.getPlayers, (req, res) => {
   return res.status(200).json(res.locals);
 });
 
-router.get('/player', playerController.getPlayers, (req, res) => {
-  console.log('Hello from playerRoutes get');
-  return res.status(200).json(res.locals);
-});
+// route for getting all players and their instruments and gigs
+router.get(
+  '/player/:id',
+  playerController.getPlayerByInstrument,
+  (req, res) => {
+    return res.status(200).json(res.locals);
+  }
+);
+
+// router.get('/player/:id', playerController.getPlayers, (req, res) => {
+//   console.log('Hello from playerRoutes get');
+//   return res.status(200).json(res.locals);
+// });
 
 router.patch('/player', playerController.updatePlayer, (req, res) => {
   console.log('Hello from playerRoutes update');

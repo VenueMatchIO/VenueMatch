@@ -72,11 +72,101 @@ gigController.getGigs = async (req, res, next) => {
 };
 
 gigController.updateGig = async (req, res, next) => {
+  try {
+  } catch (error) {}
+
   return next();
+};
+
+gigController.updateGigPlayer = async (req, res, next) => {
+  const {gigId, playerId, instrumentId} = req.body;
+  console.log(gigId, playerId, instrumentId);
+  if (!gigId || !playerId || !instrumentId) {
+    return next({
+      error: 'missing field for updateGig',
+      status: 400,
+      message: {
+        err: 'Missing gigId or playerId in reqbody of updateGig method on gigController',
+      },
+    });
+  }
+
+  try {
+    const response = await Gig.fillGigPlayer(gigId, playerId, instrumentId);
+    res.locas = response;
+    return next();
+  } catch (error) {
+    console.error(error);
+    return next({
+      error: error,
+      status: 400,
+      message: {
+        err: 'Error in the updateGigPlayer method in the gigController',
+      },
+    });
+  }
 };
 
 gigController.deleteGig = async (req, res, next) => {
   return next();
+};
+
+gigController.addInstrument = async (req, res, next) => {
+  const {instrumentId, gigId} = req.body;
+
+  if (!instrumentId || !gigId) {
+    return next({
+      error: 'error in the addInstrument method of the gigController',
+      status: 400,
+      message: {
+        err: 'error in the addInstrument method of the gigController, missing fields ',
+      },
+    });
+  }
+
+  try {
+    const response = await Gig.insertInstrument(instrumentId, gigId);
+    res.locals = response;
+    return next();
+  } catch (error) {
+    console.error(error);
+    return next({
+      error: error,
+      status: 400,
+      message: {
+        err: 'error in the addInstrument method posting data to DB of gigController',
+      },
+    });
+  }
+};
+
+gigController.removeInstrument = async (req, res, next) => {
+  console.log(req.body);
+  const {joinId} = req.body;
+  if (!joinId) {
+    return next({
+      error: 'error in the removeInstrument method of the gigController',
+      status: 400,
+      message: {
+        err: 'error in the removeInstrument method of the gigController, missing fields ',
+      },
+    });
+  }
+
+  try {
+    const response = await Gig.removeInstrument(joinId);
+    res.locals = response;
+    return next();
+  } catch (error) {
+    console.error(error);
+    return next({
+      error: error,
+      status: 400,
+      message: {
+        err: 'error in the removeInstrument method deleting data from DB of gigController',
+      },
+    });
+  }
 };
 
 module.exports = gigController;
