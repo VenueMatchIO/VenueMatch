@@ -10,18 +10,20 @@ function InstrumentsTable({instruments}) {
     };
   }
 
-  const instrumentRows = instruments.map((instrument) => {
-    return (
-      <tr key={uuid()}>
-        <td>{instrument.name}</td>
-        <td className='row-ends-holding-trash'>
-          <button className='table-remove-btn'>
-            <FontAwesomeIcon icon={faTrashCan} />
-          </button>
-        </td>
-      </tr>
-    );
-  });
+  const instrumentRows = instruments
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map((instrument) => {
+      return (
+        <tr key={uuid()}>
+          <td>{instrument.name}</td>
+          <td className='row-ends-holding-trash'>
+            <button className='table-remove-btn'>
+              <FontAwesomeIcon icon={faTrashCan} />
+            </button>
+          </td>
+        </tr>
+      );
+    });
 
   const instrumentsTable = (
     <table>

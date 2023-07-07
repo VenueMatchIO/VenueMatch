@@ -15,7 +15,7 @@ playerController.createPlayer = async (req, res, next) => {
   console.log('Creating a new player...');
   const newPlayer = new Player(name, instruments);
   try {
-    newPlayer.createPlayer();
+    await newPlayer.createPlayer();
     res.locals = newPlayer;
     console.log('New player created successfully: ', newPlayer);
     return next();
